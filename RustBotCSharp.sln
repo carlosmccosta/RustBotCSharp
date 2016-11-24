@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustBotCSharp.Communication", "RustBotCSharp.Communication\RustBotCSharp.Communication.csproj", "{82E87D8C-9D4E-4821-8A03-3CE2BCCEB978}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustBotCSharp.CLI", "RustBotCSharp.CLI\RustBotCSharp.CLI.csproj", "{50141932-74B2-48BC-853B-FE93B4E358EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustBotCSharp.GUI", "RustBotCSharp.GUI\RustBotCSharp.GUI.csproj", "{EB8DE1CA-9F52-4CBF-93AC-C19A22196DAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustBotCSharp.Messages", "RustBotCSharp.Messages\RustBotCSharp.Messages.csproj", "{F1BD7674-6188-42C1-8049-E93A72278B6C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82E87D8C-9D4E-4821-8A03-3CE2BCCEB978}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82E87D8C-9D4E-4821-8A03-3CE2BCCEB978}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82E87D8C-9D4E-4821-8A03-3CE2BCCEB978}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82E87D8C-9D4E-4821-8A03-3CE2BCCEB978}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50141932-74B2-48BC-853B-FE93B4E358EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50141932-74B2-48BC-853B-FE93B4E358EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50141932-74B2-48BC-853B-FE93B4E358EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50141932-74B2-48BC-853B-FE93B4E358EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB8DE1CA-9F52-4CBF-93AC-C19A22196DAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB8DE1CA-9F52-4CBF-93AC-C19A22196DAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB8DE1CA-9F52-4CBF-93AC-C19A22196DAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB8DE1CA-9F52-4CBF-93AC-C19A22196DAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1BD7674-6188-42C1-8049-E93A72278B6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1BD7674-6188-42C1-8049-E93A72278B6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1BD7674-6188-42C1-8049-E93A72278B6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1BD7674-6188-42C1-8049-E93A72278B6C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
