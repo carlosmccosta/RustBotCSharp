@@ -20,12 +20,14 @@ public static partial class SEVDataReflection {
   static SEVDataReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "Cg1TRVZEYXRhLnByb3RvGhFQb2ludENsb3VkMi5wcm90byIsCgdTRVZEYXRh",
-          "EiEKC3BvaW50X2Nsb3VkGAEgASgLMgwuUG9pbnRDbG91ZDJiBnByb3RvMw=="));
+          "Cg1TRVZEYXRhLnByb3RvGhFQb2ludENsb3VkMi5wcm90bxoLSW1hZ2UucHJv",
+          "dG8iZQoHU0VWRGF0YRIaCgpsZWZ0X2ltYWdlGAEgASgLMgYuSW1hZ2USGwoL",
+          "cmlnaHRfaW1hZ2UYAiABKAsyBi5JbWFnZRIhCgtwb2ludF9jbG91ZBgDIAEo",
+          "CzIMLlBvaW50Q2xvdWQyYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-        new pbr::FileDescriptor[] { global::PointCloud2Reflection.Descriptor, },
+        new pbr::FileDescriptor[] { global::PointCloud2Reflection.Descriptor, global::ImageReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::SEVData), global::SEVData.Parser, new[]{ "PointCloud" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::SEVData), global::SEVData.Parser, new[]{ "LeftImage", "RightImage", "PointCloud" }, null, null, null)
         }));
   }
   #endregion
@@ -56,6 +58,8 @@ public sealed partial class SEVData : pb::IMessage<SEVData> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public SEVData(SEVData other) : this() {
+    LeftImage = other.leftImage_ != null ? other.LeftImage.Clone() : null;
+    RightImage = other.rightImage_ != null ? other.RightImage.Clone() : null;
     PointCloud = other.pointCloud_ != null ? other.PointCloud.Clone() : null;
   }
 
@@ -64,8 +68,30 @@ public sealed partial class SEVData : pb::IMessage<SEVData> {
     return new SEVData(this);
   }
 
+  /// <summary>Field number for the "left_image" field.</summary>
+  public const int LeftImageFieldNumber = 1;
+  private global::Image leftImage_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::Image LeftImage {
+    get { return leftImage_; }
+    set {
+      leftImage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "right_image" field.</summary>
+  public const int RightImageFieldNumber = 2;
+  private global::Image rightImage_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::Image RightImage {
+    get { return rightImage_; }
+    set {
+      rightImage_ = value;
+    }
+  }
+
   /// <summary>Field number for the "point_cloud" field.</summary>
-  public const int PointCloudFieldNumber = 1;
+  public const int PointCloudFieldNumber = 3;
   private global::PointCloud2 pointCloud_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public global::PointCloud2 PointCloud {
@@ -88,6 +114,8 @@ public sealed partial class SEVData : pb::IMessage<SEVData> {
     if (ReferenceEquals(other, this)) {
       return true;
     }
+    if (!object.Equals(LeftImage, other.LeftImage)) return false;
+    if (!object.Equals(RightImage, other.RightImage)) return false;
     if (!object.Equals(PointCloud, other.PointCloud)) return false;
     return true;
   }
@@ -95,6 +123,8 @@ public sealed partial class SEVData : pb::IMessage<SEVData> {
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override int GetHashCode() {
     int hash = 1;
+    if (leftImage_ != null) hash ^= LeftImage.GetHashCode();
+    if (rightImage_ != null) hash ^= RightImage.GetHashCode();
     if (pointCloud_ != null) hash ^= PointCloud.GetHashCode();
     return hash;
   }
@@ -106,8 +136,16 @@ public sealed partial class SEVData : pb::IMessage<SEVData> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void WriteTo(pb::CodedOutputStream output) {
-    if (pointCloud_ != null) {
+    if (leftImage_ != null) {
       output.WriteRawTag(10);
+      output.WriteMessage(LeftImage);
+    }
+    if (rightImage_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(RightImage);
+    }
+    if (pointCloud_ != null) {
+      output.WriteRawTag(26);
       output.WriteMessage(PointCloud);
     }
   }
@@ -115,6 +153,12 @@ public sealed partial class SEVData : pb::IMessage<SEVData> {
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int CalculateSize() {
     int size = 0;
+    if (leftImage_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(LeftImage);
+    }
+    if (rightImage_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(RightImage);
+    }
     if (pointCloud_ != null) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(PointCloud);
     }
@@ -125,6 +169,18 @@ public sealed partial class SEVData : pb::IMessage<SEVData> {
   public void MergeFrom(SEVData other) {
     if (other == null) {
       return;
+    }
+    if (other.leftImage_ != null) {
+      if (leftImage_ == null) {
+        leftImage_ = new global::Image();
+      }
+      LeftImage.MergeFrom(other.LeftImage);
+    }
+    if (other.rightImage_ != null) {
+      if (rightImage_ == null) {
+        rightImage_ = new global::Image();
+      }
+      RightImage.MergeFrom(other.RightImage);
     }
     if (other.pointCloud_ != null) {
       if (pointCloud_ == null) {
@@ -143,6 +199,20 @@ public sealed partial class SEVData : pb::IMessage<SEVData> {
           input.SkipLastField();
           break;
         case 10: {
+          if (leftImage_ == null) {
+            leftImage_ = new global::Image();
+          }
+          input.ReadMessage(leftImage_);
+          break;
+        }
+        case 18: {
+          if (rightImage_ == null) {
+            rightImage_ = new global::Image();
+          }
+          input.ReadMessage(rightImage_);
+          break;
+        }
+        case 26: {
           if (pointCloud_ == null) {
             pointCloud_ = new global::PointCloud2();
           }

@@ -39,6 +39,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Header.cs" />
+    <Compile Include="Image.cs" />
+    <Compile Include="Pixel.cs" />
     <Compile Include="PointCloud2.cs" />
     <Compile Include="PointXYZRGB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
