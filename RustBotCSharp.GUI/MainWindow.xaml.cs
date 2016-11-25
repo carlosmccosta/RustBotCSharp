@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using RustBotCSharp.Communication;
 
 namespace RustBotCSharp.GUI
 {
@@ -7,9 +8,16 @@ namespace RustBotCSharp.GUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        public SEVDataSubscriber SEVDataSubscriber { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+            InitializeStreaming();
+        }
+
+        private void InitializeStreaming()
+        {
+            SEVDataSubscriber = new SEVDataSubscriber();
         }
     }
 }
