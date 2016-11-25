@@ -4,7 +4,7 @@ using NetMQ.Sockets;
 
 namespace RustBotCSharp.Communication
 {
-    abstract class SEVDataSubscriber
+    public abstract class SEVDataSubscriber
     {
         public SubscriberSocket SubscriberSocket { get; set; }
 
@@ -15,9 +15,17 @@ namespace RustBotCSharp.Communication
             SubscriberSocket.Subscribe(topic);
         }
 
-        public void StartReceivingData()
+        public void StartReceivingDataAsynchronous()
         {
             SubscriberSocket.ReceiveReady += SubscriberSocketOnReceiveReady;
+        }
+
+        public void StartReceivingDataSynchronous()
+        {
+            while (true)
+            {
+                ProcessData(ReceiveData());
+            }
         }
 
         private void SubscriberSocketOnReceiveReady(object sender, NetMQSocketEventArgs netMqSocketEventArgs)

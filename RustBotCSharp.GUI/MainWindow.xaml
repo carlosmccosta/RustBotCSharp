@@ -3,10 +3,132 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:RustBotCSharp.GUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Icon="inesc-tec.ico"
+        Title="SEV Visualizer" SizeToContent="WidthAndHeight" Left="0" Top="0" ResizeMode="CanMinimize">
+
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Margin" Value="2 2 2 2"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="Image">
+            <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor" />
+            <Setter Property="RenderOptions.EdgeMode" Value="Unspecified" />
+        </Style>
+    </Window.Resources>
+
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <GroupBox Header="Left Camera">
+                <xctk:Zoombox x:Name="LeftImageZoomBox" >
+                    <Image x:Name="LeftImage" HorizontalAlignment="Left"  VerticalAlignment="Top" Stretch="Uniform" Width="800" Height="600"/>
+                </xctk:Zoombox>
+            </GroupBox>
+            <GroupBox Header="Right Camera">
+                <xctk:Zoombox x:Name="RightImageZoomBox" >
+                    <Image x:Name="RightImage" HorizontalAlignment="Left"  VerticalAlignment="Top" Stretch="Uniform" Width="800" Height="600"/>
+                </xctk:Zoombox>
+            </GroupBox>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <GroupBox Header="Stereo Vision Point Cloud">
+                <Image x:Name="PointCloudImage" HorizontalAlignment="Left"  VerticalAlignment="Top" Stretch="Uniform" Width="1385" Height="600"/>
+            </GroupBox>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <GroupBox Header="Left Camera Pose">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>X (m):</Label>
+                                <Label Name="LeftCameraPoseXLabel">0.0000</Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>Y (m):</Label>
+                                <Label Name="LeftCameraPoseYLabel">0.0000</Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>Z (m):</Label>
+                                <Label Name="LeftCameraPoseZLabel">0.0000</Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>Roll (º):</Label>
+                                <Label Name="LeftCameraPoseRollLabel">0.0000</Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>Pitch (º):</Label>
+                                <Label Name="LeftCameraPosePitchLabel">0.0000</Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>Yaw (º):</Label>
+                                <Label Name="LeftCameraPoseYawLabel">0.0000</Label>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Right Camera Pose">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>X (m):</Label>
+                                <Label Name="RightCameraPoseXLabel">0.0000</Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>Y (m):</Label>
+                                <Label Name="RightCameraPoseYLabel">0.0000</Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>Z (m):</Label>
+                                <Label Name="RightCameraPoseZLabel">0.0000</Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>Roll (º):</Label>
+                                <Label Name="RightCameraPoseRollLabel">0.0000</Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>Pitch (º):</Label>
+                                <Label Name="RightCameraPosePitchLabel">0.0000</Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>Yaw (º):</Label>
+                                <Label Name="RightCameraPoseYawLabel">0.0000</Label>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <GroupBox Header="GNSS">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>Status:</Label>
+                                <Label Name="GNSSStatusLabel">0.0000</Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>Latitude (º):</Label>
+                                <Label Name="GNSSLatitudeLabel">0.0000</Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>Longitude (º):</Label>
+                                <Label Name="GNSSLongitudeLabel">0.0000</Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>Altitude (m):</Label>
+                                <Label Name="GNSSAltitudeLabel">0.0000</Label>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Control commands">
+                        <StackPanel Orientation="Vertical">
+                            <Button Name="StartStreaming">Start Streaming</Button>
+                            <Button Name="StartRecoringButton">Start Recording</Button>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
 </Window>
