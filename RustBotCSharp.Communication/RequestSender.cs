@@ -1,25 +1,36 @@
-﻿using NetMQ;
+﻿using System;
+using NetMQ;
 using NetMQ.Sockets;
 
 namespace RustBotCSharp.Communication
 {
-    public abstract class RequestSender
+    public class RequestSender
     {
         public RequestSocket RequestSocket { get; set; }
         public ResponseSocket ResponseSocket { get; set; }
 
-        protected RequestSender(string requestSocketUrl = "@tcp://*:13370", string responseSocketUrl = ">tcp://localhost:13370")
+        public RequestSender(string requestSocketUrl = "@tcp://*:13370", string responseSocketUrl = ">tcp://localhost:13370")
         {
             RequestSocket = new RequestSocket(requestSocketUrl);
             ResponseSocket = new ResponseSocket(responseSocketUrl);
         }
 
-        public void SendRequest(string request)
+        public void SendRequestSynchronously(string request)
         {
             RequestSocket.SendFrame(request);
             ProcessResponse(ResponseSocket.ReceiveFrameString());
         }
 
-        public abstract void ProcessResponse(string response);
+        public void SendRequestAsynchronously(string request)
+        {
+            ResponseSocket.ReceiveReady += ResponseSocketOnReceiveReady;
+        }
+
+        private void ResponseSocketOnReceiveReady(object sender, NetMQSocketEventArgs netMqSocketEventArgs)
+        {
+            ProcessResponse(ResponseSocket.ReceiveFrameString());
+        }
+
+        public void ProcessResponse(string response) { }
     }
 }

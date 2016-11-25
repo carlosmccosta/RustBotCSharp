@@ -33,8 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -47,6 +49,10 @@
     <ProjectReference Include="..\RustBotCSharp.Communication\RustBotCSharp.Communication.csproj">
       <Project>{82e87d8c-9d4e-4821-8a03-3ce2bcceb978}</Project>
       <Name>RustBotCSharp.Communication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RustBotCSharp.MessageConverter\RustBotCSharp.MessageConverter.csproj">
+      <Project>{3b7aed41-fb75-45c5-b5c2-9273829e963c}</Project>
+      <Name>RustBotCSharp.MessageConverter</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

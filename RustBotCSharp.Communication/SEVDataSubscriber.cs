@@ -1,26 +1,30 @@
-﻿using System;
-using NetMQ;
+﻿using NetMQ;
 using NetMQ.Sockets;
 
 namespace RustBotCSharp.Communication
 {
-    public abstract class SEVDataSubscriber
+    public class SEVDataSubscriber
     {
         public SubscriberSocket SubscriberSocket { get; set; }
 
-        protected SEVDataSubscriber(string subscriberUrl = "tcp://localhost:13370", string topic = "")
+        public SEVDataSubscriber(string subscriberUrl = "tcp://localhost:13370", string topic = "")
         {
             SubscriberSocket = new SubscriberSocket();
             SubscriberSocket.Connect(subscriberUrl);
             SubscriberSocket.Subscribe(topic);
         }
 
-        public void StartReceivingDataAsynchronous()
+        public void StartReceivingDataAsynchronously()
         {
             SubscriberSocket.ReceiveReady += SubscriberSocketOnReceiveReady;
         }
 
-        public void StartReceivingDataSynchronous()
+        public void StopReceivingDataAsynchronously()
+        {
+            SubscriberSocket.ReceiveReady -= SubscriberSocketOnReceiveReady;
+        }
+
+        public void StartReceivingDataSynchronously()
         {
             while (true)
             {
@@ -38,6 +42,6 @@ namespace RustBotCSharp.Communication
             return SEVData.Parser.ParseFrom(SubscriberSocket.ReceiveFrameBytes());
         }
 
-        public abstract void ProcessData(SEVData data);
+        public virtual void ProcessData(SEVData data) { }
     }
 }
