@@ -10,7 +10,6 @@ namespace RustBotCSharp.Communication
         public SubscriberSocket SubscriberSocket { get; set; }
         public NetMQPoller NetMqPoller { get; set; }
         public int MessageTopicHeaderSize = 0;
-        public long ParsingAndProcessingTimeInMilliseconds { get; set; }
 
         ~SEVDataSubscriber()
         {
