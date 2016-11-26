@@ -10,28 +10,67 @@ namespace RustBotCSharp.Communication
         public SubscriberSocket SubscriberSocket { get; set; }
         public NetMQPoller NetMqPoller { get; set; }
         public int MessageTopicHeaderSize = 0;
+        public long ParsingAndProcessingTimeInMilliseconds { get; set; }
 
-        public void InitializeSubscriber(string subscriberUrl = "tcp://localhost:13370", string topic = "")
+        ~SEVDataSubscriber()
+        {
+            try
+            {
+                SubscriberSocket?.Dispose();
+                NetMqPoller?.Stop();
+                NetMqPoller?.Dispose();
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+        }
+
+        public bool InitializeSubscriber(string subscriberUrl = "tcp://localhost:13370", string topic = "")
         {
             MessageTopicHeaderSize = topic.Length + 1;
-            SubscriberSocket = new SubscriberSocket();
-            SubscriberSocket.Connect(subscriberUrl);
-            SubscriberSocket.Subscribe(topic);
+            try
+            {
+                SubscriberSocket = new SubscriberSocket();
+                SubscriberSocket.Connect(subscriberUrl);
+                SubscriberSocket.Subscribe(topic);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        public void StartReceivingDataAsynchronously()
+        public bool StartReceivingDataAsynchronously()
         {
-            SubscriberSocket.ReceiveReady += SubscriberSocketOnReceiveReady;
-            NetMqPoller = new NetMQPoller {SubscriberSocket};
-            NetMqPoller.RunAsync();
+            try
+            {
+                SubscriberSocket.ReceiveReady += SubscriberSocketOnReceiveReady;
+                NetMqPoller = new NetMQPoller { SubscriberSocket };
+                NetMqPoller.RunAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        public void StopReceivingDataAsynchronously()
+        public bool StopReceivingDataAsynchronously()
         {
-            SubscriberSocket.ReceiveReady -= SubscriberSocketOnReceiveReady;
-            NetMqPoller.Remove(SubscriberSocket);
-            NetMqPoller.StopAsync();
-            NetMqPoller.Dispose();
+            try
+            {
+                SubscriberSocket.ReceiveReady -= SubscriberSocketOnReceiveReady;
+                NetMqPoller.Remove(SubscriberSocket);
+                NetMqPoller.StopAsync();
+                NetMqPoller.Dispose();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public void StartReceivingDataSynchronously()
@@ -47,15 +86,14 @@ namespace RustBotCSharp.Communication
             ProcessData(ReceiveData());
         }
 
-        public SEVData ReceiveData()
+        public virtual SEVData ReceiveData()
         {
-            Msg msg = new Msg();
-            msg.InitEmpty();
-            SubscriberSocket.Receive(ref msg);
-            
             SEVData data = null;
             try
             {
+                Msg msg = new Msg();
+                msg.InitEmpty();
+                SubscriberSocket.Receive(ref msg);
                 if (msg.Size > MessageTopicHeaderSize)
                 {
                     byte[] serializedData = msg.Data.Skip(MessageTopicHeaderSize).ToArray();
@@ -69,6 +107,9 @@ namespace RustBotCSharp.Communication
             return data;
         }
 
-        public virtual void ProcessData(SEVData data) { }
+        public virtual bool ProcessData(SEVData data)
+        {
+            return false;
+        }
     }
 }

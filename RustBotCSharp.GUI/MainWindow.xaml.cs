@@ -1,5 +1,5 @@
-﻿using System.Windows;
-using RustBotCSharp.Communication;
+﻿using System;
+using System.Windows;
 
 namespace RustBotCSharp.GUI
 {
@@ -18,11 +18,15 @@ namespace RustBotCSharp.GUI
             DataContext = SEVDataSubscriberWPF.SEVDataModel;
         }
 
-        private void InitializeStreaming()
+        private bool InitializeStreaming()
         {
-            SEVDataSubscriberWPF.InitializeSubscriber(SubscriberURLTextBox.Text, SubscriberTopicTextBox.Text);
-            SEVDataSubscriberWPF.StartReceivingDataAsynchronously();
-            _streamingActive = true;
+            if (SEVDataSubscriberWPF.InitializeSubscriber(SubscriberURLTextBox.Text, SubscriberTopicTextBox.Text))
+            {
+                SEVDataSubscriberWPF.StartReceivingDataAsynchronously();
+                _streamingActive = true;
+                return true;
+            }
+            return false;
         }
 
         private bool StopStreaming()
@@ -36,6 +40,14 @@ namespace RustBotCSharp.GUI
             return false;
         }
 
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            //NetMQConfig.Cleanup(false);
+            base.OnClosing(e);
+            Application.Current.Shutdown();
+            Environment.Exit(0);
+        }
+
         private void StreamingButton_OnClick(object sender, RoutedEventArgs e)
         {
             if (_streamingActive)
@@ -45,8 +57,8 @@ namespace RustBotCSharp.GUI
             }
             else
             {
-                InitializeStreaming();
-                StreamingButton.Content = _activeStreamingText;
+                if (InitializeStreaming())
+                    StreamingButton.Content = _activeStreamingText;
             }
         }
 

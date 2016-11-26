@@ -9,21 +9,60 @@ namespace RustBotCSharp.Communication
         public RequestSocket RequestSocket { get; set; }
         public ResponseSocket ResponseSocket { get; set; }
 
-        public void InitializeRequestSender(string requestSocketUrl = "@tcp://*:13370", string responseSocketUrl = ">tcp://localhost:13370")
+        ~RequestSender()
         {
-            RequestSocket = new RequestSocket(requestSocketUrl);
-            ResponseSocket = new ResponseSocket(responseSocketUrl);
+            try
+            {
+                ResponseSocket?.Dispose();
+                ResponseSocket?.Dispose();
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
         }
 
-        public void SendRequestSynchronously(string request)
+        public bool InitializeRequestSender(string requestSocketUrl = "@tcp://*:13370",
+            string responseSocketUrl = ">tcp://localhost:13370")
         {
-            RequestSocket.SendFrame(request);
-            ProcessResponse(ResponseSocket.ReceiveFrameString());
+            try
+            {
+                RequestSocket = new RequestSocket(requestSocketUrl);
+                ResponseSocket = new ResponseSocket(responseSocketUrl);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        public void SendRequestAsynchronously(string request)
+        public bool SendRequestSynchronously(string request)
         {
-            ResponseSocket.ReceiveReady += ResponseSocketOnReceiveReady;
+            try
+            {
+                RequestSocket.SendFrame(request);
+                ProcessResponse(ResponseSocket.ReceiveFrameString());
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool SendRequestAsynchronously(string request)
+        {
+            try
+            {
+                RequestSocket.SendFrame(request);
+                ResponseSocket.ReceiveReady += ResponseSocketOnReceiveReady;
+                return true;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
         }
 
         private void ResponseSocketOnReceiveReady(object sender, NetMQSocketEventArgs netMqSocketEventArgs)
@@ -31,6 +70,9 @@ namespace RustBotCSharp.Communication
             ProcessResponse(ResponseSocket.ReceiveFrameString());
         }
 
-        public void ProcessResponse(string response) { }
+        public virtual bool ProcessResponse(string response)
+        {
+            return false;
+        }
     }
 }

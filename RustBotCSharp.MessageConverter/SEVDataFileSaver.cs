@@ -4,13 +4,14 @@ namespace RustBotCSharp.MessageConverter
 {
     public class SEVDataFileSaver : SEVDataSubscriber
     {
-        public override void ProcessData(SEVData data)
+        public override bool ProcessData(SEVData data)
         {
             SaveImage(data.LeftImage);
             SaveImage(data.RightImage);
             SavePointCloud(data.PointCloud);
             SavePose();
             SaveGNSS();
+            return false;
         }
 
         public void SaveImage(Image image)
