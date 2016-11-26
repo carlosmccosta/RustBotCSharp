@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyTitle("RustBotCSharp.GUI")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("INESC-TEC")]
 [assembly: AssemblyProduct("RustBotCSharp.GUI")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
