@@ -38,12 +38,12 @@
         <StackPanel Orientation="Horizontal">
             <GroupBox Header="Left Camera">
                 <xctk:Zoombox x:Name="LeftImageZoomBox" >
-                    <Image x:Name="LeftImage" HorizontalAlignment="Left"  VerticalAlignment="Top" Stretch="Uniform" Width="600" Height="450"/>
+                    <Image x:Name="LeftImage" HorizontalAlignment="Left"  VerticalAlignment="Top" Stretch="Uniform" Width="600" Height="450" Source="{Binding LeftImageWriteableBitmap}"/>
                 </xctk:Zoombox>
             </GroupBox>
             <GroupBox Header="Right Camera">
                 <xctk:Zoombox x:Name="RightImageZoomBox" >
-                    <Image x:Name="RightImage" HorizontalAlignment="Left"  VerticalAlignment="Top" Stretch="Uniform" Width="600" Height="450"/>
+                    <Image x:Name="RightImage" HorizontalAlignment="Left"  VerticalAlignment="Top" Stretch="Uniform" Width="600" Height="450" Source="{Binding RightImageWriteableBitmap}"/>
                 </xctk:Zoombox>
             </GroupBox>
         </StackPanel>
@@ -113,7 +113,7 @@
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Status:</Label>
-                                <Label Name="GNSSStatusLabel">NO-FIX</Label>
+                                <Label Name="GNSSStatusLabel">0.0000</Label>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Latitude (º):</Label>
@@ -144,9 +144,9 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Subscriber Topic</Label>
-                                <TextBox>SEVData</TextBox>
+                                <TextBox Name="SubscriberTopicTextBox">13371</TextBox>
                             </StackPanel>
-                            <Button Name="StreamingButton">Start Streaming</Button>
+                            <Button Name="StreamingButton" Click="StreamingButton_OnClick">Start Streaming</Button>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Remote Record Configuration">
@@ -159,7 +159,7 @@
                                 <Label>Response Socket URL</Label>
                                 <TextBox>&gt;tcp://localhost:13370</TextBox>
                             </StackPanel>
-                            <Button Name="RecordingButton">Start Recording</Button>
+                            <Button Name="RecordingButton" IsEnabled="False" Click="RecordingButton_OnClick">Start Recording</Button>
                         </StackPanel>
                     </GroupBox>
                 </StackPanel>

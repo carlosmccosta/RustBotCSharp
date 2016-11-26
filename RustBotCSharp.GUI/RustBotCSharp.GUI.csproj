@@ -26,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,6 +36,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Google.Protobuf, Version=3.1.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
@@ -127,12 +129,18 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RustBotCSharp.Communication\RustBotCSharp.Communication.csproj">
       <Project>{82e87d8c-9d4e-4821-8a03-3ce2bcceb978}</Project>
       <Name>RustBotCSharp.Communication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RustBotCSharp.MessageConverter\RustBotCSharp.MessageConverter.csproj">
+      <Project>{3B7AED41-FB75-45C5-B5C2-9273829E963C}</Project>
+      <Name>RustBotCSharp.MessageConverter</Name>
     </ProjectReference>
     <ProjectReference Include="..\RustBotCSharp.Messages\RustBotCSharp.Messages.csproj">
       <Project>{F1BD7674-6188-42C1-8049-E93A72278B6C}</Project>
@@ -140,7 +148,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="inesc-tec.ico" />
+    <Content Include="inesc-tec.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />

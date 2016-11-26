@@ -9,7 +9,7 @@ namespace RustBotCSharp.Communication
         public RequestSocket RequestSocket { get; set; }
         public ResponseSocket ResponseSocket { get; set; }
 
-        public RequestSender(string requestSocketUrl = "@tcp://*:13370", string responseSocketUrl = ">tcp://localhost:13370")
+        public void InitializeRequestSender(string requestSocketUrl = "@tcp://*:13370", string responseSocketUrl = ">tcp://localhost:13370")
         {
             RequestSocket = new RequestSocket(requestSocketUrl);
             ResponseSocket = new ResponseSocket(responseSocketUrl);

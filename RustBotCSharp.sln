@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustBotCSharp.GUI", "RustBo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustBotCSharp.Messages", "RustBotCSharp.Messages\RustBotCSharp.Messages.csproj", "{F1BD7674-6188-42C1-8049-E93A72278B6C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustBotCSharp.MessageConverter", "RustBotCSharp.MessageConverter\RustBotCSharp.MessageConverter.csproj", "{3B7AED41-FB75-45C5-B5C2-9273829E963C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F1BD7674-6188-42C1-8049-E93A72278B6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1BD7674-6188-42C1-8049-E93A72278B6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1BD7674-6188-42C1-8049-E93A72278B6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B7AED41-FB75-45C5-B5C2-9273829E963C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B7AED41-FB75-45C5-B5C2-9273829E963C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B7AED41-FB75-45C5-B5C2-9273829E963C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B7AED41-FB75-45C5-B5C2-9273829E963C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

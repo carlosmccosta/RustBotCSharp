@@ -6,7 +6,8 @@ namespace RustBotCSharp.CLI
     {
         static void Main(string[] args)
         {
-            SEVDataFileSaver fileSaver = new SEVDataFileSaver(args[0], args[1]);
+            SEVDataFileSaver fileSaver = new SEVDataFileSaver();
+            fileSaver.InitializeSubscriber(args[0], args[1]);
             fileSaver.StartReceivingDataSynchronously();
         }
     }
