@@ -11,5 +11,6 @@ namespace RustBotCSharp.GUI
         public CameraPoseModel LeftCameraPoseModel { get; set; } = new CameraPoseModel();
         public CameraPoseModel RightCameraPoseModel { get; set; } = new CameraPoseModel();
         public GNSSModel GNSSModel { get; set; } = new GNSSModel();
+        public DiagnosticsModel DiagnosticsModel { get; set; } = new DiagnosticsModel();
     }
 }
