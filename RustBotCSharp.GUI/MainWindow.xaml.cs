@@ -20,7 +20,7 @@ namespace RustBotCSharp.GUI
 
         private bool InitializeStreaming()
         {
-            if (SEVDataSubscriberWPF.InitializeSubscriber(SubscriberURLTextBox.Text, SubscriberTopicTextBox.Text))
+            if (SEVDataSubscriberWPF.InitializeSubscriber(SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.StreamingSubscriberCommunicationsModel.URL(), SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.StreamingSubscriberTopic))
             {
                 SEVDataSubscriberWPF.StartReceivingDataAsynchronously();
                 _streamingActive = true;

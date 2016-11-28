@@ -19,7 +19,7 @@
 
         <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
             <Setter Property="Height" Value="25"/>
-            <Setter Property="Width" Value="160"/>
+            <Setter Property="Width" Value="120"/>
             <Setter Property="Margin" Value="2 2 2 2"/>
             <Setter Property="TextBlock.TextAlignment" Value="Center"/>
         </Style>
@@ -139,12 +139,16 @@
                     <GroupBox Header="Streaming Configuration">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Subscriber URL</Label>
-                                <TextBox x:Name="SubscriberURLTextBox">tcp://localhost:13370</TextBox>
+                                <Label>Subscriber IP</Label>
+                                <TextBox Text="{Binding CommunicationsModel.StreamingSubscriberCommunicationsModel.IP, Mode=TwoWay}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>Subscriber Port</Label>
+                                <TextBox Text="{Binding CommunicationsModel.StreamingSubscriberCommunicationsModel.Port, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Subscriber Topic</Label>
-                                <TextBox Name="SubscriberTopicTextBox">13371</TextBox>
+                                <TextBox Text="{Binding CommunicationsModel.StreamingSubscriberTopic, Mode=TwoWay}"/>
                             </StackPanel>
                             <Button Name="StreamingButton" Click="StreamingButton_OnClick">Start Streaming</Button>
                         </StackPanel>
@@ -152,12 +156,20 @@
                     <GroupBox Header="Remote Record Configuration">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Request Socket URL</Label>
-                                <TextBox>@tcp://*:13370</TextBox>
+                                <Label>Request Socket IP</Label>
+                                <TextBox Text="{Binding CommunicationsModel.RecordRequestCommunicationsModel.IP, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Response Socket URL</Label>
-                                <TextBox>&gt;tcp://localhost:13370</TextBox>
+                                <Label>Request Socket Port</Label>
+                                <TextBox Text="{Binding CommunicationsModel.RecordRequestCommunicationsModel.Port, Mode=TwoWay}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>Response Socket IP</Label>
+                                <TextBox Text="{Binding CommunicationsModel.RecordResponseCommunicationsModel.IP, Mode=TwoWay}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>Response Socket Port</Label>
+                                <TextBox Text="{Binding CommunicationsModel.RecordResponseCommunicationsModel.Port, Mode=TwoWay}"/>
                             </StackPanel>
                             <Button Name="RecordingButton" IsEnabled="False" Click="RecordingButton_OnClick">Start Recording</Button>
                         </StackPanel>

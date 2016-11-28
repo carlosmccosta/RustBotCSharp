@@ -104,10 +104,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CameraPoseModel.cs" />
+    <Compile Include="CommunicationsModel.cs" />
     <Compile Include="DiagnosticsModel.cs" />
     <Compile Include="GNSSModel.cs" />
     <Compile Include="SEVDataModel.cs" />
     <Compile Include="SEVDataSubscriberWPF.cs" />
+    <Compile Include="URLModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
