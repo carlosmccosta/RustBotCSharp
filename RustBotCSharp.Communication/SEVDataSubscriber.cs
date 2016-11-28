@@ -9,7 +9,8 @@ namespace RustBotCSharp.Communication
     {
         public SubscriberSocket SubscriberSocket { get; set; }
         public NetMQPoller NetMqPoller { get; set; }
-        public int MessageTopicHeaderSize = 0;
+        public int MessageTopicHeaderSize { get; set; } = 0;
+        public int LastMessageSizeInBytes { get; set; } = 0;
 
         ~SEVDataSubscriber()
         {
@@ -93,10 +94,16 @@ namespace RustBotCSharp.Communication
                 Msg msg = new Msg();
                 msg.InitEmpty();
                 SubscriberSocket.Receive(ref msg);
+                
                 if (msg.Size > MessageTopicHeaderSize)
                 {
+                    LastMessageSizeInBytes = msg.Size - MessageTopicHeaderSize;
                     byte[] serializedData = msg.Data.Skip(MessageTopicHeaderSize).ToArray();
                     data = SEVData.Parser.ParseFrom(serializedData);
+                }
+                else
+                {
+                    LastMessageSizeInBytes = 0;
                 }
             }
             catch (Exception)

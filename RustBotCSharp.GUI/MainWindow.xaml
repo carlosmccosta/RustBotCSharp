@@ -179,6 +179,13 @@
         </StackPanel>
         <StatusBar Name="StatusBar" VerticalAlignment="Bottom" Background="LightGray" HorizontalAlignment="Center">
             <StatusBarItem>
+                <Label>NetMQ message size (in Bytes):</Label>
+            </StatusBarItem>
+            <StatusBarItem>
+                <Label Content="{Binding DiagnosticsModel.MessageSizeInBytes}"/>
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem>
                 <Label>NetMQ Receive() and Google Protocol Buffers ParseFrom() time (in Milliseconds):</Label>
             </StatusBarItem>
             <StatusBarItem>

@@ -15,6 +15,7 @@ namespace RustBotCSharp.GUI
             stopWatch.Start();
             SEVData data = base.ReceiveData();
             stopWatch.Stop();
+            SEVDataModel.DiagnosticsModel.MessageSizeInBytes = LastMessageSizeInBytes;
             SEVDataModel.DiagnosticsModel.MessageParsingTimeMilliseconds = stopWatch.ElapsedMilliseconds;
             return data;
         }
