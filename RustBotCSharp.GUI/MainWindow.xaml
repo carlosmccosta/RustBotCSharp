@@ -10,6 +10,15 @@
         Title="SEV Visualizer" SizeToContent="WidthAndHeight" Left="0" Top="0" ResizeMode="CanMinimize">
 
     <Window.Resources>
+        <Style x:Key="TextBoxFixedWidth" TargetType="{x:Type TextBox}">
+            <Setter Property="Width" Value="77"/>
+            <Setter Property="IsReadOnlyCaretVisible" Value="True"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="ClipToBounds" Value="True"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        
         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
             <Setter Property="Height" Value="25"/>
             <Setter Property="Width" Value="120"/>
@@ -55,27 +64,27 @@
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>X (m):</Label>
-                                <Label Name="LeftCameraPoseXLabel">0.0000</Label>
+                                <TextBox Text="{Binding LeftCameraPoseModel.X}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Y (m):</Label>
-                                <Label Name="LeftCameraPoseYLabel">0.0000</Label>
+                                <TextBox Text="{Binding LeftCameraPoseModel.Y}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Z (m):</Label>
-                                <Label Name="LeftCameraPoseZLabel">0.0000</Label>
+                                <TextBox Text="{Binding LeftCameraPoseModel.Z}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Roll (º):</Label>
-                                <Label Name="LeftCameraPoseRollLabel">0.0000</Label>
+                                <TextBox Text="{Binding LeftCameraPoseModel.Roll}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Pitch (º):</Label>
-                                <Label Name="LeftCameraPosePitchLabel">0.0000</Label>
+                                <TextBox Text="{Binding LeftCameraPoseModel.Pitch}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Yaw (º):</Label>
-                                <Label Name="LeftCameraPoseYawLabel">0.0000</Label>
+                                <TextBox Text="{Binding LeftCameraPoseModel.Yaw}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                         </StackPanel>
                     </GroupBox>
@@ -83,27 +92,27 @@
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>X (m):</Label>
-                                <Label Name="RightCameraPoseXLabel">0.0000</Label>
+                                <TextBox Text="{Binding RightCameraPoseModel.X}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Y (m):</Label>
-                                <Label Name="RightCameraPoseYLabel">0.0000</Label>
+                                <TextBox Text="{Binding RightCameraPoseModel.Y}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Z (m):</Label>
-                                <Label Name="RightCameraPoseZLabel">0.0000</Label>
+                                <TextBox Text="{Binding RightCameraPoseModel.Z}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Roll (º):</Label>
-                                <Label Name="RightCameraPoseRollLabel">0.0000</Label>
+                                <TextBox Text="{Binding RightCameraPoseModel.Roll}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Pitch (º):</Label>
-                                <Label Name="RightCameraPosePitchLabel">0.0000</Label>
+                                <TextBox Text="{Binding RightCameraPoseModel.Pitch}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Yaw (º):</Label>
-                                <Label Name="RightCameraPoseYawLabel">0.0000</Label>
+                                <TextBox Text="{Binding RightCameraPoseModel.Yaw}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                         </StackPanel>
                     </GroupBox>
@@ -113,19 +122,19 @@
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Status:</Label>
-                                <Label Name="GNSSStatusLabel">0.0000</Label>
+                                <TextBox Text="{Binding GNSSModel.Status}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Latitude (º):</Label>
-                                <Label Name="GNSSLatitudeLabel">0.0000</Label>
+                                <TextBox Text="{Binding GNSSModel.Latitude}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Longitude (º):</Label>
-                                <Label Name="GNSSLongitudeLabel">0.0000</Label>
+                                <TextBox Text="{Binding GNSSModel.Longitude}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Altitude (m):</Label>
-                                <Label Name="GNSSAltitudeLabel">0.0000</Label>
+                                <TextBox Text="{Binding GNSSModel.Altitude}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                         </StackPanel>
                     </GroupBox>
