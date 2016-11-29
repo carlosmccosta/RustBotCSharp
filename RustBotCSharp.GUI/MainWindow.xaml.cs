@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows;
+using HelixToolkit.Wpf.SharpDX;
+using SharpDX;
 
 namespace RustBotCSharp.GUI
 {
@@ -15,7 +17,14 @@ namespace RustBotCSharp.GUI
         public MainWindow()
         {
             InitializeComponent();
+            InitializeViewport3D();
             DataContext = SEVDataSubscriberWPF.SEVDataModel;
+        }
+
+        private void InitializeViewport3D()
+        {
+            Viewport3DXGrid.Geometry = LineBuilder.GenerateGrid(Vector3.UnitX, -10, 10);
+            Viewport3DXGrid.Color = Color.DarkGray;
         }
 
         private bool InitializeStreaming()

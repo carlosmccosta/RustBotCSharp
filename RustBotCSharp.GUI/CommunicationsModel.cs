@@ -37,7 +37,7 @@ namespace RustBotCSharp.GUI
                     Initialize(communicationsModel);
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -60,7 +60,7 @@ namespace RustBotCSharp.GUI
                     writer.Close();
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
