@@ -19,12 +19,14 @@ namespace RustBotCSharp.GUI
         private const string _inactiveStreamingText = "Start Streaming";
         private const string _activeRecordingText = "Stop Recording";
         private const string _inactiveRecordingText = "Start Recording";
+        private const string _encryptionKey = "3101337073";
 
         public MainWindow()
         {
             InitializeComponent();
             InitializeViewport3D();
             DataContext = SEVDataSubscriberWPF.SEVDataModel;
+            SSHPasswordBox.Password = Encryption.DecryptString(SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Password, _encryptionKey);
         }
 
         private void InitializeViewport3D()
@@ -85,7 +87,7 @@ namespace RustBotCSharp.GUI
                     SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Host,
                     SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Port,
                     SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Username,
-                    SSHPasswordBox.Password);
+                    Encryption.DecryptString(SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Password, _encryptionKey));
                 SSHClient.ConnectionInfo.Timeout = TimeSpan.FromSeconds(1.0);
                 SSHClient.Connect();
                 if (ExecuteSSHCommand(SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHStartRecordCommand) == 0)
@@ -130,6 +132,11 @@ namespace RustBotCSharp.GUI
                 StopRecording();
             else
                 InitializeRecording();
+        }
+
+        private void SSHPasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Password = Encryption.EncryptString(SSHPasswordBox.Password, _encryptionKey);
         }
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)

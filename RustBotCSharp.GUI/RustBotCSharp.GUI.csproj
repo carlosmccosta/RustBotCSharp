@@ -155,6 +155,7 @@
     <Compile Include="CameraPoseModel.cs" />
     <Compile Include="CommunicationsModel.cs" />
     <Compile Include="DiagnosticsModel.cs" />
+    <Compile Include="Encryption.cs" />
     <Compile Include="GNSSModel.cs" />
     <Compile Include="SEVDataModel.cs" />
     <Compile Include="SEVDataSubscriberWPF.cs" />

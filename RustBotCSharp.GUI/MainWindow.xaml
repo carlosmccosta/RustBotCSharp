@@ -221,7 +221,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Record Server Password</Label>
-                                <PasswordBox Name="SSHPasswordBox"/>
+                                <PasswordBox Name="SSHPasswordBox" PasswordChanged="SSHPasswordBox_OnPasswordChanged"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>SSH Start Record Command</Label>
