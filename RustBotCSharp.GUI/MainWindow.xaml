@@ -27,15 +27,25 @@
             <Setter Property="Width" Value="120"/>
             <Setter Property="Margin" Value="2 2 2 2"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
 
         <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
             <Setter Property="Height" Value="25"/>
             <Setter Property="Width" Value="120"/>
             <Setter Property="Margin" Value="2 2 2 2"/>
-            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
 
+        <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource {x:Type PasswordBox}}">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Margin" Value="2 2 2 2"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        
         <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Margin" Value="5 5 5 5"/>
         </Style>
@@ -48,12 +58,12 @@
 
     <StackPanel Orientation="Vertical">
         <StackPanel Orientation="Horizontal">
-            <GroupBox Header="Left Camera">
+            <GroupBox Header="Left camera">
                 <xctk:Zoombox x:Name="LeftImageZoomBox" >
                     <Image x:Name="LeftImage" HorizontalAlignment="Left"  VerticalAlignment="Top" Stretch="Uniform" Width="600" Height="450" Source="{Binding LeftImageWriteableBitmap}"/>
                 </xctk:Zoombox>
             </GroupBox>
-            <GroupBox Header="Right Camera">
+            <GroupBox Header="Right camera">
                 <xctk:Zoombox x:Name="RightImageZoomBox" >
                     <Image x:Name="RightImage" HorizontalAlignment="Left"  VerticalAlignment="Top" Stretch="Uniform" Width="600" Height="450" Source="{Binding RightImageWriteableBitmap}"/>
                 </xctk:Zoombox>
@@ -63,7 +73,7 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <GroupBox Header="Left Camera Pose">
+                    <GroupBox Header="Left camera pose">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>X (m):</Label>
@@ -91,7 +101,7 @@
                             </StackPanel>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Header="Right Camera Pose">
+                    <GroupBox Header="Right camera pose">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>X (m):</Label>
@@ -143,7 +153,7 @@
                     </GroupBox>
                 </StackPanel>
             </StackPanel>
-            <GroupBox Header="Stereo Vision Point Cloud">
+            <GroupBox Header="Stereo vision point cloud">
                 <hx:Viewport3DX x:Name="Viewport3DX" Width="640" Height="480"
                                 Background="LightGray"
                                 CoordinateSystemLabelForeground="Black"
@@ -178,42 +188,50 @@
             </GroupBox>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel Orientation="Vertical">
-                    <GroupBox Header="Streaming Configuration">
+                    <GroupBox Header="Streaming configuration">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Subscriber IP</Label>
-                                <TextBox Text="{Binding CommunicationsModel.StreamingSubscriberCommunicationsModel.IP, Mode=TwoWay}"/>
+                                <Label>Publisher IP</Label>
+                                <TextBox Text="{Binding CommunicationsModel.StreamingPublisherCommunicationsModel.IP, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Subscriber Port</Label>
-                                <TextBox Text="{Binding CommunicationsModel.StreamingSubscriberCommunicationsModel.Port, Mode=TwoWay}"/>
+                                <Label>Publisher Port</Label>
+                                <TextBox Text="{Binding CommunicationsModel.StreamingPublisherCommunicationsModel.Port, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Subscriber Topic</Label>
-                                <TextBox Text="{Binding CommunicationsModel.StreamingSubscriberTopic, Mode=TwoWay}"/>
+                                <Label>Publisher Topic</Label>
+                                <TextBox Text="{Binding CommunicationsModel.StreamingPublisherTopic, Mode=TwoWay}"/>
                             </StackPanel>
                             <Button Name="StreamingButton" Click="StreamingButton_OnClick">Start Streaming</Button>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Header="Remote Record Configuration">
+                    <GroupBox Header="Remote record configuration">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Request Socket IP</Label>
-                                <TextBox Text="{Binding CommunicationsModel.RecordRequestCommunicationsModel.IP, Mode=TwoWay}"/>
+                                <Label>Record Server Host</Label>
+                                <TextBox Text="{Binding CommunicationsModel.SSHConnectionModel.Host, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Request Socket Port</Label>
-                                <TextBox Text="{Binding CommunicationsModel.RecordRequestCommunicationsModel.Port, Mode=TwoWay}"/>
+                                <Label>Record Server Port</Label>
+                                <TextBox Text="{Binding CommunicationsModel.SSHConnectionModel.Port, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Response Socket IP</Label>
-                                <TextBox Text="{Binding CommunicationsModel.RecordResponseCommunicationsModel.IP, Mode=TwoWay}"/>
+                                <Label>Record Server Username</Label>
+                                <TextBox Text="{Binding CommunicationsModel.SSHConnectionModel.Username, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Response Socket Port</Label>
-                                <TextBox Text="{Binding CommunicationsModel.RecordResponseCommunicationsModel.Port, Mode=TwoWay}"/>
+                                <Label>Record Server Password</Label>
+                                <PasswordBox Name="SSHPasswordBox"/>
                             </StackPanel>
-                            <Button Name="RecordingButton" IsEnabled="False" Click="RecordingButton_OnClick">Start Recording</Button>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>SSH Start Record Command</Label>
+                                <TextBox Text="{Binding CommunicationsModel.SSHStartRecordCommand, Mode=TwoWay}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>SSH Stop Record Command</Label>
+                                <TextBox Text="{Binding CommunicationsModel.SSHStopRecordCommand, Mode=TwoWay}"/>
+                            </StackPanel>
+                            <Button Name="RecordingButton" Click="RecordingButton_OnClick">Start Recording</Button>
                         </StackPanel>
                     </GroupBox>
                 </StackPanel>

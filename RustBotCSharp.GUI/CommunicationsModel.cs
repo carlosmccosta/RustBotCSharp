@@ -70,19 +70,22 @@ namespace RustBotCSharp.GUI
 
         public void Initialize(CommunicationsModel communicationsModel)
         {
-            StreamingSubscriberCommunicationsModel = communicationsModel.StreamingSubscriberCommunicationsModel;
-            StreamingSubscriberTopic = communicationsModel.StreamingSubscriberTopic;
-            RecordRequestCommunicationsModel = communicationsModel.RecordRequestCommunicationsModel;
-            RecordResponseCommunicationsModel = communicationsModel.RecordResponseCommunicationsModel;
+            StreamingPublisherCommunicationsModel = communicationsModel.StreamingPublisherCommunicationsModel;
+            StreamingPublisherTopic = communicationsModel.StreamingPublisherTopic;
+            SSHConnectionModel = communicationsModel.SSHConnectionModel;
+            SSHStartRecordCommand = communicationsModel.SSHStartRecordCommand;
+            SSHStopRecordCommand = communicationsModel.SSHStopRecordCommand;
         }
 
         [XmlElement]
-        public URLModel StreamingSubscriberCommunicationsModel { get; set; } = new URLModel();
+        public URLModel StreamingPublisherCommunicationsModel { get; set; } = new URLModel();
         [XmlElement]
-        public string StreamingSubscriberTopic { get; set; } = "13371";
+        public string StreamingPublisherTopic { get; set; } = "13371";
         [XmlElement]
-        public URLModel RecordRequestCommunicationsModel { get; set; } = new URLModel("@tcp", "*", 13372);
+        public SSHConnectionModel SSHConnectionModel { get; set; } = new SSHConnectionModel();
         [XmlElement]
-        public URLModel RecordResponseCommunicationsModel { get; set; } = new URLModel(">tcp", "localhost", 13373);
+        public string SSHStartRecordCommand { get; set; } = "~/start_record.bash";
+        [XmlElement]
+        public string SSHStopRecordCommand { get; set; } = "~/stop_record.bash";
     }
 }
