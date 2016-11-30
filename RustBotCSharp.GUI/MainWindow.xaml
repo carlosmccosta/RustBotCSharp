@@ -144,20 +144,24 @@
                 </StackPanel>
             </StackPanel>
             <GroupBox Header="Stereo Vision Point Cloud">
-                <hx:Viewport3DX x:Name="Viewport3DX"
-                                Width="640" Height="480"
+                <hx:Viewport3DX x:Name="Viewport3DX" Width="640" Height="480"
                                 Background="LightGray"
-                                ZoomExtentsWhenLoaded="False"
-                                ShowCoordinateSystem="True"
-                                ShowFieldOfView="True"
-                                ShowViewCube="False"
                                 CoordinateSystemLabelForeground="Black"
+                                CoordinateSystemHeight="125"
+                                CoordinateSystemWidth="125"
+                                CoordinateSystemLabelX="X"
+                                CoordinateSystemLabelY="Y"
+                                CoordinateSystemLabelZ="Z"
                                 IsMoveEnabled="True"
                                 IsPanEnabled="True"
                                 IsRotationEnabled="True"
                                 IsTouchZoomEnabled="True"
                                 IsZoomEnabled="True"
-                                ModelUpDirection="0,0,1">
+                                ModelUpDirection="0,0,1"
+                                ShowCoordinateSystem="True"
+                                ShowFieldOfView="True"
+                                ShowViewCube="False"
+                                ZoomExtentsWhenLoaded="False">
                     <hx:Viewport3DX.InputBindings>
                         <KeyBinding Command="hx:ViewportCommands.ZoomExtents" Gesture="Control+E" />
                         <MouseBinding Command="hx:ViewportCommands.Rotate" Gesture="RightClick" />
@@ -168,7 +172,7 @@
                     <hx:PointGeometryModel3D Geometry="{Binding PointGeometry3D}" Color="{x:Static sdx:Color.White}" Figure="Ellipse" Size="10 10" HitTestThickness="5"/>
                     <hx:LineGeometryModel3D x:Name="Viewport3DXGrid"/>
                     <hx:Viewport3DX.Camera>
-                        <hx:PerspectiveCamera LookDirection="1,0,0" UpDirection="0,0,1" Position="0,0,0"/>
+                        <hx:PerspectiveCamera LookDirection="1,0,0" UpDirection="0,0,1" Position="-1,0,0" FieldOfView="60"/>
                     </hx:Viewport3DX.Camera>
                 </hx:Viewport3DX>
             </GroupBox>

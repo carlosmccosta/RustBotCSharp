@@ -1,4 +1,5 @@
-﻿using System.Windows.Media.Imaging;
+﻿using System;
+using System.Windows.Media.Imaging;
 using HelixToolkit.Wpf.SharpDX;
 using HelixToolkit.Wpf.SharpDX.Core;
 using SharpDX;
@@ -18,6 +19,8 @@ namespace RustBotCSharp.GUI
                 Colors = new Color4Collection()
             };
 
+            Random rng = new Random();
+
             for (int x = 0; x < 10; x++)
             {
                 for (int y = -5; y < 6; y++)
@@ -26,7 +29,7 @@ namespace RustBotCSharp.GUI
                     {
                         PointGeometry3D.Indices.Add(PointGeometry3D.Positions.Count);
                         PointGeometry3D.Positions.Add(new Vector3(x, y, z));
-                        PointGeometry3D.Colors.Add(new Color4(0.4f, 0.6f, 1, 1));
+                        PointGeometry3D.Colors.Add(new Color4(rng.NextFloat(0, 1), rng.NextFloat(0, 1), rng.NextFloat(0, 1), 1));
                     }
                 }
             }
