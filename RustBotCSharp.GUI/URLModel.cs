@@ -9,7 +9,7 @@ namespace RustBotCSharp.GUI
     {
         public URLModel() { }
 
-        public URLModel(string protocol = "tcp", string ip = "localhost", uint port = 13370)
+        public URLModel(string protocol = "tcp", string ip = "localhost", uint port = 5556)
         {
             Protocol = protocol;
             IP = ip;
@@ -23,7 +23,7 @@ namespace RustBotCSharp.GUI
         public string IP { get; set; } = "localhost";
 
         [XmlAttribute]
-        public uint Port { get; set; } = 13370;
+        public uint Port { get; set; } = 5556;
 
         public string URL()
         {

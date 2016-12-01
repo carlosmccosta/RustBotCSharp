@@ -20,14 +20,13 @@ public static partial class ImageReflection {
   static ImageReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "CgtJbWFnZS5wcm90bxoMSGVhZGVyLnByb3RvGgtQaXhlbC5wcm90byJXCgVJ",
-          "bWFnZRIXCgZoZWFkZXIYASABKAsyBy5IZWFkZXISDgoGaGVpZ2h0GAIgASgF",
-          "Eg0KBXdpZHRoGAMgASgFEhYKBnBpeGVscxgEIAMoCzIGLlBpeGVsYgZwcm90",
-          "bzM="));
+          "CgtJbWFnZS5wcm90bxoMSGVhZGVyLnByb3RvIk0KBUltYWdlEhcKBmhlYWRl",
+          "chgBIAEoCzIHLkhlYWRlchIOCgZoZWlnaHQYAiABKAUSDQoFd2lkdGgYAyAB",
+          "KAUSDAoEZGF0YRgEIAEoDGIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-        new pbr::FileDescriptor[] { global::HeaderReflection.Descriptor, global::PixelReflection.Descriptor, },
+        new pbr::FileDescriptor[] { global::HeaderReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::Image), global::Image.Parser, new[]{ "Header", "Height", "Width", "Pixels" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::Image), global::Image.Parser, new[]{ "Header", "Height", "Width", "Data" }, null, null, null)
         }));
   }
   #endregion
@@ -61,7 +60,7 @@ public sealed partial class Image : pb::IMessage<Image> {
     Header = other.header_ != null ? other.Header.Clone() : null;
     height_ = other.height_;
     width_ = other.width_;
-    pixels_ = other.pixels_.Clone();
+    data_ = other.data_;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -102,14 +101,18 @@ public sealed partial class Image : pb::IMessage<Image> {
     }
   }
 
-  /// <summary>Field number for the "pixels" field.</summary>
-  public const int PixelsFieldNumber = 4;
-  private static readonly pb::FieldCodec<global::Pixel> _repeated_pixels_codec
-      = pb::FieldCodec.ForMessage(34, global::Pixel.Parser);
-  private readonly pbc::RepeatedField<global::Pixel> pixels_ = new pbc::RepeatedField<global::Pixel>();
+  /// <summary>Field number for the "data" field.</summary>
+  public const int DataFieldNumber = 4;
+  private pb::ByteString data_ = pb::ByteString.Empty;
+  /// <summary>
+  /// repeated Pixel pixels = 4;
+  /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public pbc::RepeatedField<global::Pixel> Pixels {
-    get { return pixels_; }
+  public pb::ByteString Data {
+    get { return data_; }
+    set {
+      data_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -128,7 +131,7 @@ public sealed partial class Image : pb::IMessage<Image> {
     if (!object.Equals(Header, other.Header)) return false;
     if (Height != other.Height) return false;
     if (Width != other.Width) return false;
-    if(!pixels_.Equals(other.pixels_)) return false;
+    if (Data != other.Data) return false;
     return true;
   }
 
@@ -138,7 +141,7 @@ public sealed partial class Image : pb::IMessage<Image> {
     if (header_ != null) hash ^= Header.GetHashCode();
     if (Height != 0) hash ^= Height.GetHashCode();
     if (Width != 0) hash ^= Width.GetHashCode();
-    hash ^= pixels_.GetHashCode();
+    if (Data.Length != 0) hash ^= Data.GetHashCode();
     return hash;
   }
 
@@ -161,7 +164,10 @@ public sealed partial class Image : pb::IMessage<Image> {
       output.WriteRawTag(24);
       output.WriteInt32(Width);
     }
-    pixels_.WriteTo(output, _repeated_pixels_codec);
+    if (Data.Length != 0) {
+      output.WriteRawTag(34);
+      output.WriteBytes(Data);
+    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -176,7 +182,9 @@ public sealed partial class Image : pb::IMessage<Image> {
     if (Width != 0) {
       size += 1 + pb::CodedOutputStream.ComputeInt32Size(Width);
     }
-    size += pixels_.CalculateSize(_repeated_pixels_codec);
+    if (Data.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
+    }
     return size;
   }
 
@@ -197,7 +205,9 @@ public sealed partial class Image : pb::IMessage<Image> {
     if (other.Width != 0) {
       Width = other.Width;
     }
-    pixels_.Add(other.pixels_);
+    if (other.Data.Length != 0) {
+      Data = other.Data;
+    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -224,7 +234,7 @@ public sealed partial class Image : pb::IMessage<Image> {
           break;
         }
         case 34: {
-          pixels_.AddEntriesFrom(input, _repeated_pixels_codec);
+          Data = input.ReadBytes();
           break;
         }
       }

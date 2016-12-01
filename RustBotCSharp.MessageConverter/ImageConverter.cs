@@ -8,18 +8,15 @@ namespace RustBotCSharp.MessageConverter
     {
         public static WriteableBitmap ConvertToWrittableBitmap(Image image, double dpi = 96)
         {
-            WriteableBitmap writeableBitmap = new WriteableBitmap(image.Width, image.Height, dpi, dpi, PixelFormats.Bgr32, null);
+            WriteableBitmap writeableBitmap = new WriteableBitmap(image.Width, image.Height, dpi, dpi, PixelFormats.Bgr24, null);
             writeableBitmap.Lock();
             unsafe
             {
-                int pBackBuffer = (int)writeableBitmap.BackBuffer;
-                foreach (Pixel pixel in image.Pixels)
+                byte* pBackBuffer = (byte*)writeableBitmap.BackBuffer;
+                foreach (var pixel in image.Data)
                 {
-                    int colorData = (int)pixel.R << 16;
-                    colorData |= (int)pixel.G << 8;
-                    colorData |= (int)pixel.B << 0;
-                    *((int*)pBackBuffer) = colorData;
-                    pBackBuffer += 4;
+                    *pBackBuffer = (byte)pixel;
+                    ++pBackBuffer;
                 }
             }
 

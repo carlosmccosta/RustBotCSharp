@@ -72,7 +72,7 @@ namespace RustBotCSharp.GUI
                     return x.ExitStatus;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return -1;
             }

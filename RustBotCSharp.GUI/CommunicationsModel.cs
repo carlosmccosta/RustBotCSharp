@@ -80,7 +80,7 @@ namespace RustBotCSharp.GUI
         [XmlElement]
         public URLModel StreamingPublisherCommunicationsModel { get; set; } = new URLModel();
         [XmlElement]
-        public string StreamingPublisherTopic { get; set; } = "13371";
+        public string StreamingPublisherTopic { get; set; } = "777";
         [XmlElement]
         public SSHConnectionModel SSHConnectionModel { get; set; } = new SSHConnectionModel();
         [XmlElement]
