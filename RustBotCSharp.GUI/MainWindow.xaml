@@ -154,7 +154,7 @@
                 </StackPanel>
             </StackPanel>
             <GroupBox Header="Stereo vision point cloud">
-                <hx:Viewport3DX x:Name="Viewport3DX" Width="640" Height="480"
+                <hx:Viewport3DX x:Name="Viewport3DX" Width="600" Height="450"
                                 Background="LightGray"
                                 CoordinateSystemLabelForeground="Black"
                                 CoordinateSystemHeight="125"

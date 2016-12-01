@@ -21,11 +21,13 @@ namespace RustBotCSharp.GUI
 
             Random rng = new Random();
 
-            for (int x = 0; x < 10; x++)
+            for (float x = 0; x < 5; x += 0.5f)
             {
-                for (int y = -5; y < 6; y++)
+                float start = -0.5f - x * 0.5f;
+                float end = 0.5f + x * 0.5f;
+                for (float y = start; y < end; y += 0.5f)
                 {
-                    for (int z = -5; z < 6; z++)
+                    for (float z = start; z < end; z += 0.5f)
                     {
                         PointGeometry3D.Indices.Add(PointGeometry3D.Positions.Count);
                         PointGeometry3D.Positions.Add(new Vector3(x, y, z));
