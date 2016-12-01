@@ -18,23 +18,6 @@ namespace RustBotCSharp.GUI
                 Positions = new Vector3Collection(),
                 Colors = new Color4Collection()
             };
-
-            Random rng = new Random();
-
-            for (float x = 0; x < 5; x += 0.5f)
-            {
-                float start = -0.5f - x * 0.5f;
-                float end = 0.5f + x * 0.5f;
-                for (float y = start; y < end; y += 0.5f)
-                {
-                    for (float z = start; z < end; z += 0.5f)
-                    {
-                        PointGeometry3D.Indices.Add(PointGeometry3D.Positions.Count);
-                        PointGeometry3D.Positions.Add(new Vector3(x, y, z));
-                        PointGeometry3D.Colors.Add(new Color4(rng.NextFloat(0, 1), rng.NextFloat(0, 1), rng.NextFloat(0, 1), 1));
-                    }
-                }
-            }
         }
 
         public WriteableBitmap LeftImageWriteableBitmap { get; set; }

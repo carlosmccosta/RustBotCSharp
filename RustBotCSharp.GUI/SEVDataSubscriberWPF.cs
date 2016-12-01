@@ -33,6 +33,9 @@ namespace RustBotCSharp.GUI
 
                     if (data.RightImage != null)
                         SEVDataModel.RightImageWriteableBitmap = ImageConverter.ConvertToWrittableBitmap(data.RightImage);
+
+                    if (data.PointCloud != null)
+                        SEVDataModel.PointGeometry3D = PointCloudConverter.ConvertToPointGeometry3D(data.PointCloud);
                 }
                 stopWatch.Stop();
                 SEVDataModel.DiagnosticsModel.MessageProcessingTimeMilliseconds = stopWatch.ElapsedMilliseconds;

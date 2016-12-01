@@ -20,13 +20,16 @@ public static partial class PointCloud2Reflection {
   static PointCloud2Reflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "ChFQb2ludENsb3VkMi5wcm90bxoMSGVhZGVyLnByb3RvGhFQb2ludFhZWlJH",
-          "Qi5wcm90byJECgtQb2ludENsb3VkMhIXCgZoZWFkZXIYASABKAsyBy5IZWFk",
-          "ZXISHAoGcG9pbnRzGAIgAygLMgwuUG9pbnRYWVpSR0JiBnByb3RvMw=="));
+          "ChFQb2ludENsb3VkMi5wcm90bxoMSGVhZGVyLnByb3RvGhBQb2ludEZpZWxk",
+          "LnByb3RvIqwBCgtQb2ludENsb3VkMhIXCgZoZWFkZXIYASABKAsyBy5IZWFk",
+          "ZXISDgoGaGVpZ2h0GAIgASgFEg0KBXdpZHRoGAMgASgFEhsKBmZpZWxkcxgE",
+          "IAMoCzILLlBvaW50RmllbGQSFAoMaXNfYmlnZW5kaWFuGAUgASgIEhIKCnBv",
+          "aW50X3N0ZXAYBiABKAUSEAoIcm93X3N0ZXAYByABKAUSDAoEZGF0YRgIIAEo",
+          "DGIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-        new pbr::FileDescriptor[] { global::HeaderReflection.Descriptor, global::PointXYZRGBReflection.Descriptor, },
+        new pbr::FileDescriptor[] { global::HeaderReflection.Descriptor, global::PointFieldReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::PointCloud2), global::PointCloud2.Parser, new[]{ "Header", "Points" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::PointCloud2), global::PointCloud2.Parser, new[]{ "Header", "Height", "Width", "Fields", "IsBigendian", "PointStep", "RowStep", "Data" }, null, null, null)
         }));
   }
   #endregion
@@ -58,7 +61,13 @@ public sealed partial class PointCloud2 : pb::IMessage<PointCloud2> {
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public PointCloud2(PointCloud2 other) : this() {
     Header = other.header_ != null ? other.Header.Clone() : null;
-    points_ = other.points_.Clone();
+    height_ = other.height_;
+    width_ = other.width_;
+    fields_ = other.fields_.Clone();
+    isBigendian_ = other.isBigendian_;
+    pointStep_ = other.pointStep_;
+    rowStep_ = other.rowStep_;
+    data_ = other.data_;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -77,14 +86,83 @@ public sealed partial class PointCloud2 : pb::IMessage<PointCloud2> {
     }
   }
 
-  /// <summary>Field number for the "points" field.</summary>
-  public const int PointsFieldNumber = 2;
-  private static readonly pb::FieldCodec<global::PointXYZRGB> _repeated_points_codec
-      = pb::FieldCodec.ForMessage(18, global::PointXYZRGB.Parser);
-  private readonly pbc::RepeatedField<global::PointXYZRGB> points_ = new pbc::RepeatedField<global::PointXYZRGB>();
+  /// <summary>Field number for the "height" field.</summary>
+  public const int HeightFieldNumber = 2;
+  private int height_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public pbc::RepeatedField<global::PointXYZRGB> Points {
-    get { return points_; }
+  public int Height {
+    get { return height_; }
+    set {
+      height_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "width" field.</summary>
+  public const int WidthFieldNumber = 3;
+  private int width_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int Width {
+    get { return width_; }
+    set {
+      width_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "fields" field.</summary>
+  public const int FieldsFieldNumber = 4;
+  private static readonly pb::FieldCodec<global::PointField> _repeated_fields_codec
+      = pb::FieldCodec.ForMessage(34, global::PointField.Parser);
+  private readonly pbc::RepeatedField<global::PointField> fields_ = new pbc::RepeatedField<global::PointField>();
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<global::PointField> Fields {
+    get { return fields_; }
+  }
+
+  /// <summary>Field number for the "is_bigendian" field.</summary>
+  public const int IsBigendianFieldNumber = 5;
+  private bool isBigendian_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool IsBigendian {
+    get { return isBigendian_; }
+    set {
+      isBigendian_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "point_step" field.</summary>
+  public const int PointStepFieldNumber = 6;
+  private int pointStep_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int PointStep {
+    get { return pointStep_; }
+    set {
+      pointStep_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "row_step" field.</summary>
+  public const int RowStepFieldNumber = 7;
+  private int rowStep_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int RowStep {
+    get { return rowStep_; }
+    set {
+      rowStep_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "data" field.</summary>
+  public const int DataFieldNumber = 8;
+  private pb::ByteString data_ = pb::ByteString.Empty;
+  /// <summary>
+  /// repeated PointXYZRGB points = 2;
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pb::ByteString Data {
+    get { return data_; }
+    set {
+      data_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -101,7 +179,13 @@ public sealed partial class PointCloud2 : pb::IMessage<PointCloud2> {
       return true;
     }
     if (!object.Equals(Header, other.Header)) return false;
-    if(!points_.Equals(other.points_)) return false;
+    if (Height != other.Height) return false;
+    if (Width != other.Width) return false;
+    if(!fields_.Equals(other.fields_)) return false;
+    if (IsBigendian != other.IsBigendian) return false;
+    if (PointStep != other.PointStep) return false;
+    if (RowStep != other.RowStep) return false;
+    if (Data != other.Data) return false;
     return true;
   }
 
@@ -109,7 +193,13 @@ public sealed partial class PointCloud2 : pb::IMessage<PointCloud2> {
   public override int GetHashCode() {
     int hash = 1;
     if (header_ != null) hash ^= Header.GetHashCode();
-    hash ^= points_.GetHashCode();
+    if (Height != 0) hash ^= Height.GetHashCode();
+    if (Width != 0) hash ^= Width.GetHashCode();
+    hash ^= fields_.GetHashCode();
+    if (IsBigendian != false) hash ^= IsBigendian.GetHashCode();
+    if (PointStep != 0) hash ^= PointStep.GetHashCode();
+    if (RowStep != 0) hash ^= RowStep.GetHashCode();
+    if (Data.Length != 0) hash ^= Data.GetHashCode();
     return hash;
   }
 
@@ -124,7 +214,31 @@ public sealed partial class PointCloud2 : pb::IMessage<PointCloud2> {
       output.WriteRawTag(10);
       output.WriteMessage(Header);
     }
-    points_.WriteTo(output, _repeated_points_codec);
+    if (Height != 0) {
+      output.WriteRawTag(16);
+      output.WriteInt32(Height);
+    }
+    if (Width != 0) {
+      output.WriteRawTag(24);
+      output.WriteInt32(Width);
+    }
+    fields_.WriteTo(output, _repeated_fields_codec);
+    if (IsBigendian != false) {
+      output.WriteRawTag(40);
+      output.WriteBool(IsBigendian);
+    }
+    if (PointStep != 0) {
+      output.WriteRawTag(48);
+      output.WriteInt32(PointStep);
+    }
+    if (RowStep != 0) {
+      output.WriteRawTag(56);
+      output.WriteInt32(RowStep);
+    }
+    if (Data.Length != 0) {
+      output.WriteRawTag(66);
+      output.WriteBytes(Data);
+    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -133,7 +247,25 @@ public sealed partial class PointCloud2 : pb::IMessage<PointCloud2> {
     if (header_ != null) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(Header);
     }
-    size += points_.CalculateSize(_repeated_points_codec);
+    if (Height != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Height);
+    }
+    if (Width != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Width);
+    }
+    size += fields_.CalculateSize(_repeated_fields_codec);
+    if (IsBigendian != false) {
+      size += 1 + 1;
+    }
+    if (PointStep != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(PointStep);
+    }
+    if (RowStep != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(RowStep);
+    }
+    if (Data.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
+    }
     return size;
   }
 
@@ -148,7 +280,25 @@ public sealed partial class PointCloud2 : pb::IMessage<PointCloud2> {
       }
       Header.MergeFrom(other.Header);
     }
-    points_.Add(other.points_);
+    if (other.Height != 0) {
+      Height = other.Height;
+    }
+    if (other.Width != 0) {
+      Width = other.Width;
+    }
+    fields_.Add(other.fields_);
+    if (other.IsBigendian != false) {
+      IsBigendian = other.IsBigendian;
+    }
+    if (other.PointStep != 0) {
+      PointStep = other.PointStep;
+    }
+    if (other.RowStep != 0) {
+      RowStep = other.RowStep;
+    }
+    if (other.Data.Length != 0) {
+      Data = other.Data;
+    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -166,8 +316,32 @@ public sealed partial class PointCloud2 : pb::IMessage<PointCloud2> {
           input.ReadMessage(header_);
           break;
         }
-        case 18: {
-          points_.AddEntriesFrom(input, _repeated_points_codec);
+        case 16: {
+          Height = input.ReadInt32();
+          break;
+        }
+        case 24: {
+          Width = input.ReadInt32();
+          break;
+        }
+        case 34: {
+          fields_.AddEntriesFrom(input, _repeated_fields_codec);
+          break;
+        }
+        case 40: {
+          IsBigendian = input.ReadBool();
+          break;
+        }
+        case 48: {
+          PointStep = input.ReadInt32();
+          break;
+        }
+        case 56: {
+          RowStep = input.ReadInt32();
+          break;
+        }
+        case 66: {
+          Data = input.ReadBytes();
           break;
         }
       }

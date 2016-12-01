@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media.Media3D;
 using HelixToolkit.Wpf.SharpDX;
 using Renci.SshNet;
 using SharpDX;
@@ -31,7 +32,8 @@ namespace RustBotCSharp.GUI
 
         private void InitializeViewport3D()
         {
-            Viewport3DXGrid.Geometry = LineBuilder.GenerateGrid(Vector3.UnitX, -10, 10);
+            Viewport3DXGrid.Geometry = LineBuilder.GenerateGrid(Vector3.UnitY, -20, 20);
+            Viewport3DXGrid.Transform = new TranslateTransform3D(0, 1.7, 0);
             Viewport3DXGrid.Color = Color.DarkGray;
         }
 

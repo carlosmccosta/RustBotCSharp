@@ -20,12 +20,13 @@ public static partial class HeaderReflection {
   static HeaderReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "CgxIZWFkZXIucHJvdG8iGgoGSGVhZGVyEhAKCGZyYW1lX2lkGAEgASgJYgZw",
-          "cm90bzM="));
+          "CgxIZWFkZXIucHJvdG8aD3RpbWVzdGFtcC5wcm90byJFCgZIZWFkZXISEAoI",
+          "ZnJhbWVfaWQYASABKAkSKQoFc3RhbXAYAiABKAsyGi5nb29nbGUucHJvdG9i",
+          "dWYuVGltZXN0YW1wYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-        new pbr::FileDescriptor[] { },
+        new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::Header), global::Header.Parser, new[]{ "FrameId" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::Header), global::Header.Parser, new[]{ "FrameId", "Stamp" }, null, null, null)
         }));
   }
   #endregion
@@ -57,6 +58,7 @@ public sealed partial class Header : pb::IMessage<Header> {
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public Header(Header other) : this() {
     frameId_ = other.frameId_;
+    Stamp = other.stamp_ != null ? other.Stamp.Clone() : null;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -67,14 +69,22 @@ public sealed partial class Header : pb::IMessage<Header> {
   /// <summary>Field number for the "frame_id" field.</summary>
   public const int FrameIdFieldNumber = 1;
   private string frameId_ = "";
-  /// <summary>
-  /// google.protobuf.Timestamp stamp = 2;
-  /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public string FrameId {
     get { return frameId_; }
     set {
       frameId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "stamp" field.</summary>
+  public const int StampFieldNumber = 2;
+  private global::Google.Protobuf.WellKnownTypes.Timestamp stamp_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::Google.Protobuf.WellKnownTypes.Timestamp Stamp {
+    get { return stamp_; }
+    set {
+      stamp_ = value;
     }
   }
 
@@ -92,6 +102,7 @@ public sealed partial class Header : pb::IMessage<Header> {
       return true;
     }
     if (FrameId != other.FrameId) return false;
+    if (!object.Equals(Stamp, other.Stamp)) return false;
     return true;
   }
 
@@ -99,6 +110,7 @@ public sealed partial class Header : pb::IMessage<Header> {
   public override int GetHashCode() {
     int hash = 1;
     if (FrameId.Length != 0) hash ^= FrameId.GetHashCode();
+    if (stamp_ != null) hash ^= Stamp.GetHashCode();
     return hash;
   }
 
@@ -113,6 +125,10 @@ public sealed partial class Header : pb::IMessage<Header> {
       output.WriteRawTag(10);
       output.WriteString(FrameId);
     }
+    if (stamp_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(Stamp);
+    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -120,6 +136,9 @@ public sealed partial class Header : pb::IMessage<Header> {
     int size = 0;
     if (FrameId.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(FrameId);
+    }
+    if (stamp_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Stamp);
     }
     return size;
   }
@@ -131,6 +150,12 @@ public sealed partial class Header : pb::IMessage<Header> {
     }
     if (other.FrameId.Length != 0) {
       FrameId = other.FrameId;
+    }
+    if (other.stamp_ != null) {
+      if (stamp_ == null) {
+        stamp_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+      }
+      Stamp.MergeFrom(other.Stamp);
     }
   }
 
@@ -144,6 +169,13 @@ public sealed partial class Header : pb::IMessage<Header> {
           break;
         case 10: {
           FrameId = input.ReadString();
+          break;
+        }
+        case 18: {
+          if (stamp_ == null) {
+            stamp_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+          }
+          input.ReadMessage(stamp_);
           break;
         }
       }

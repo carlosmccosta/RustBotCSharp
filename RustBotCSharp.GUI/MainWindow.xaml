@@ -24,7 +24,7 @@
         
         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
             <Setter Property="Height" Value="25"/>
-            <Setter Property="Width" Value="120"/>
+            <Setter Property="Width" Value="135"/>
             <Setter Property="Margin" Value="2 2 2 2"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -32,7 +32,7 @@
 
         <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
             <Setter Property="Height" Value="25"/>
-            <Setter Property="Width" Value="120"/>
+            <Setter Property="Width" Value="135"/>
             <Setter Property="Margin" Value="2 2 2 2"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -40,7 +40,7 @@
 
         <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource {x:Type PasswordBox}}">
             <Setter Property="Height" Value="25"/>
-            <Setter Property="Width" Value="120"/>
+            <Setter Property="Width" Value="135"/>
             <Setter Property="Margin" Value="2 2 2 2"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -179,10 +179,10 @@
                         <MouseBinding Command="hx:ViewportCommands.Pan" Gesture="LeftClick" />
                     </hx:Viewport3DX.InputBindings>
                     <hx:AmbientLight3D />
-                    <hx:PointGeometryModel3D Geometry="{Binding PointGeometry3D}" Color="{x:Static sdx:Color.White}" Figure="Ellipse" Size="10 10" HitTestThickness="5"/>
+                    <hx:PointGeometryModel3D Geometry="{Binding PointGeometry3D}" Color="{x:Static sdx:Color.White}" Figure="Ellipse" Size="3 3" HitTestThickness="1"/>
                     <hx:LineGeometryModel3D x:Name="Viewport3DXGrid"/>
                     <hx:Viewport3DX.Camera>
-                        <hx:PerspectiveCamera LookDirection="1,0,0" UpDirection="0,0,1" Position="-2,0,0" FieldOfView="60"/>
+                        <hx:PerspectiveCamera LookDirection="0,0,1" UpDirection="0,-1,0" Position="0,0,1" FieldOfView="60"/>
                     </hx:Viewport3DX.Camera>
                 </hx:Viewport3DX>
             </GroupBox>

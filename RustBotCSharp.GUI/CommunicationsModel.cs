@@ -84,8 +84,8 @@ namespace RustBotCSharp.GUI
         [XmlElement]
         public SSHConnectionModel SSHConnectionModel { get; set; } = new SSHConnectionModel();
         [XmlElement]
-        public string SSHStartRecordCommand { get; set; } = "~/start_record.bash";
+        public string SSHStartRecordCommand { get; set; } = "~/start_recording.bash";
         [XmlElement]
-        public string SSHStopRecordCommand { get; set; } = "~/stop_record.bash";
+        public string SSHStopRecordCommand { get; set; } = "~/stop_recording.bash";
     }
 }
