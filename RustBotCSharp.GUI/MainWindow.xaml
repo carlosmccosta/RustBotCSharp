@@ -205,30 +205,30 @@
                             <Button Name="StreamingButton" Click="StreamingButton_OnClick">Start Streaming</Button>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Header="Remote record configuration">
+                    <GroupBox Header="Remote recording configuration (rosbag format)">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Record server host</Label>
+                                <Label>Recording server host</Label>
                                 <TextBox Text="{Binding CommunicationsModel.SSHConnectionModel.Host, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Record server port</Label>
+                                <Label>Recording server port</Label>
                                 <TextBox Text="{Binding CommunicationsModel.SSHConnectionModel.Port, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Record server username</Label>
+                                <Label>Recording server username</Label>
                                 <TextBox Text="{Binding CommunicationsModel.SSHConnectionModel.Username, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Record server password</Label>
+                                <Label>Recording server password</Label>
                                 <PasswordBox Name="SSHPasswordBox" PasswordChanged="SSHPasswordBox_OnPasswordChanged"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>SSH start record command</Label>
+                                <Label>SSH start recording script</Label>
                                 <TextBox Text="{Binding CommunicationsModel.SSHStartRecordCommand, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>SSH stop record command</Label>
+                                <Label>SSH stop recording script</Label>
                                 <TextBox Text="{Binding CommunicationsModel.SSHStopRecordCommand, Mode=TwoWay}"/>
                             </StackPanel>
                             <Button Name="RecordingButton" Click="RecordingButton_OnClick">Start Recording</Button>
