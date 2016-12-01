@@ -195,11 +195,11 @@
                                 <TextBox Text="{Binding CommunicationsModel.StreamingPublisherCommunicationsModel.IP, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Publisher Port</Label>
+                                <Label>Publisher port</Label>
                                 <TextBox Text="{Binding CommunicationsModel.StreamingPublisherCommunicationsModel.Port, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Publisher Topic</Label>
+                                <Label>Publisher topic</Label>
                                 <TextBox Text="{Binding CommunicationsModel.StreamingPublisherTopic, Mode=TwoWay}"/>
                             </StackPanel>
                             <Button Name="StreamingButton" Click="StreamingButton_OnClick">Start Streaming</Button>
@@ -208,27 +208,27 @@
                     <GroupBox Header="Remote record configuration">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Record Server Host</Label>
+                                <Label>Record server host</Label>
                                 <TextBox Text="{Binding CommunicationsModel.SSHConnectionModel.Host, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Record Server Port</Label>
+                                <Label>Record server port</Label>
                                 <TextBox Text="{Binding CommunicationsModel.SSHConnectionModel.Port, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Record Server Username</Label>
+                                <Label>Record server username</Label>
                                 <TextBox Text="{Binding CommunicationsModel.SSHConnectionModel.Username, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Record Server Password</Label>
+                                <Label>Record server password</Label>
                                 <PasswordBox Name="SSHPasswordBox" PasswordChanged="SSHPasswordBox_OnPasswordChanged"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>SSH Start Record Command</Label>
+                                <Label>SSH start record command</Label>
                                 <TextBox Text="{Binding CommunicationsModel.SSHStartRecordCommand, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>SSH Stop Record Command</Label>
+                                <Label>SSH stop record command</Label>
                                 <TextBox Text="{Binding CommunicationsModel.SSHStopRecordCommand, Mode=TwoWay}"/>
                             </StackPanel>
                             <Button Name="RecordingButton" Click="RecordingButton_OnClick">Start Recording</Button>
@@ -239,21 +239,21 @@
         </StackPanel>
         <StatusBar Name="StatusBar" VerticalAlignment="Bottom" Background="LightGray" HorizontalAlignment="Center">
             <StatusBarItem>
-                <Label>NetMQ message size (in Bytes):</Label>
+                <Label>NetMQ message size (in bytes):</Label>
             </StatusBarItem>
             <StatusBarItem>
                 <Label Content="{Binding DiagnosticsModel.MessageSizeInBytes}"/>
             </StatusBarItem>
             <Separator/>
             <StatusBarItem>
-                <Label>NetMQ Receive() and Google Protocol Buffers ParseFrom() time (in Milliseconds):</Label>
+                <Label>NetMQ Receive() and Google Protocol Buffers ParseFrom() time (in milliseconds):</Label>
             </StatusBarItem>
             <StatusBarItem>
                 <Label Content="{Binding DiagnosticsModel.MessageParsingTimeMilliseconds}"/>
             </StatusBarItem>
             <Separator/>
             <StatusBarItem>
-                <Label>ProcessData() time required to convert SEVData to WPF controls (in Milliseconds):</Label>
+                <Label>ProcessData() time required to convert SEVData to WPF controls (in milliseconds):</Label>
             </StatusBarItem>
             <StatusBarItem>
                 <Label Content="{Binding DiagnosticsModel.MessageProcessingTimeMilliseconds}"/>
