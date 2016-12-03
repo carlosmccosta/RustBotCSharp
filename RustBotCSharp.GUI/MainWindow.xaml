@@ -14,25 +14,29 @@
 
     <Window.Resources>
         <Style x:Key="TextBoxFixedWidth" TargetType="{x:Type TextBox}">
-            <Setter Property="Width" Value="120"/>
+            <Setter Property="Width" Value="42"/>
             <Setter Property="IsReadOnlyCaretVisible" Value="True"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="ClipToBounds" Value="True"/>
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
 
         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
             <Setter Property="Height" Value="25"/>
-            <Setter Property="Width" Value="125"/>
+            <Setter Property="Width" Value="111"/>
             <Setter Property="Margin" Value="2 2 2 2"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
 
         <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
             <Setter Property="Height" Value="25"/>
-            <Setter Property="Width" Value="168"/>
+            <Setter Property="Width" Value="133"/>
             <Setter Property="Margin" Value="2 2 2 2"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -40,7 +44,7 @@
 
         <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource {x:Type PasswordBox}}">
             <Setter Property="Height" Value="25"/>
-            <Setter Property="Width" Value="168"/>
+            <Setter Property="Width" Value="133"/>
             <Setter Property="Margin" Value="2 2 2 2"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -72,35 +76,35 @@
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <GroupBox Header="Stereo vision system pose">
+                <GroupBox Header="Stereo vision pose">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Label>X (m):</Label>
-                            <TextBox Text="{Binding StereoSystemPoseModel.X}" Style="{StaticResource TextBoxFixedWidth}"/>
+                            <TextBox Text="{Binding StereoSystemPoseModel.X, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Label>Y (m):</Label>
-                            <TextBox Text="{Binding StereoSystemPoseModel.Y}" Style="{StaticResource TextBoxFixedWidth}"/>
+                            <TextBox Text="{Binding StereoSystemPoseModel.Y, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Label>Z (m):</Label>
-                            <TextBox Text="{Binding StereoSystemPoseModel.Z}" Style="{StaticResource TextBoxFixedWidth}"/>
+                            <TextBox Text="{Binding StereoSystemPoseModel.Z, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Label>Heading (º):</Label>
-                            <TextBox Text="{Binding StereoSystemPoseModel.Heading}" Style="{StaticResource TextBoxFixedWidth}"/>
+                            <TextBox Text="{Binding StereoSystemPoseModel.Heading, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Label>Attitude (º):</Label>
-                            <TextBox Text="{Binding StereoSystemPoseModel.Attitude}" Style="{StaticResource TextBoxFixedWidth}"/>
+                            <TextBox Text="{Binding StereoSystemPoseModel.Attitude, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Label>Bank (º):</Label>
-                            <TextBox Text="{Binding StereoSystemPoseModel.Bank}" Style="{StaticResource TextBoxFixedWidth}"/>
+                            <TextBox Text="{Binding StereoSystemPoseModel.Bank, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
-                <GroupBox Header="Global navigation satellite system">
+                <GroupBox Header="GNSS">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Label>Status:</Label>
@@ -108,21 +112,21 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Label>Latitude (º):</Label>
-                            <TextBox Text="{Binding GNSSModel.Latitude}" Style="{StaticResource TextBoxFixedWidth}"/>
+                            <TextBox Text="{Binding GNSSModel.Latitude, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Label>Longitude (º):</Label>
-                            <TextBox Text="{Binding GNSSModel.Longitude}" Style="{StaticResource TextBoxFixedWidth}"/>
+                            <TextBox Text="{Binding GNSSModel.Longitude, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Label>Altitude (m):</Label>
-                            <TextBox Text="{Binding GNSSModel.Altitude}" Style="{StaticResource TextBoxFixedWidth}"/>
+                            <TextBox Text="{Binding GNSSModel.Altitude, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
             </StackPanel>
             <GroupBox Header="Stereo vision system point cloud">
-                <hx:Viewport3DX x:Name="Viewport3DX" Width="600" Height="450"
+                <hx:Viewport3DX x:Name="Viewport3DX" Width="660" Height="495"
                                 Background="LightGray"
                                 CoordinateSystemLabelForeground="Black"
                                 CoordinateSystemHeight="125"
@@ -135,7 +139,7 @@
                                 IsRotationEnabled="True"
                                 IsTouchZoomEnabled="True"
                                 IsZoomEnabled="True"
-                                ModelUpDirection="0,0,1"
+                                ModelUpDirection="0,-1,0"
                                 ShowCoordinateSystem="True"
                                 ShowFieldOfView="True"
                                 ShowViewCube="False"
@@ -159,47 +163,47 @@
                     <GroupBox Header="Streaming configuration">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Publisher IP</Label>
+                                <Label>Publisher IP:</Label>
                                 <TextBox Text="{Binding CommunicationsModel.StreamingPublisherCommunicationsModel.IP, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Publisher port</Label>
+                                <Label>Publisher port:</Label>
                                 <TextBox Text="{Binding CommunicationsModel.StreamingPublisherCommunicationsModel.Port, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Publisher topic</Label>
+                                <Label>Publisher topic:</Label>
                                 <TextBox Text="{Binding CommunicationsModel.StreamingPublisherTopic, Mode=TwoWay}"/>
                             </StackPanel>
-                            <Button Name="StreamingButton" Click="StreamingButton_OnClick">Start Streaming</Button>
+                            <Button Name="StreamingButton" Click="StreamingButton_OnClick">Start streaming</Button>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Remote recording configuration (rosbag format)">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Recording server host</Label>
+                                <Label>Recording server host:</Label>
                                 <TextBox Text="{Binding CommunicationsModel.SSHConnectionModel.Host, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Recording server port</Label>
+                                <Label>Recording server port:</Label>
                                 <TextBox Text="{Binding CommunicationsModel.SSHConnectionModel.Port, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Recording server username</Label>
+                                <Label>Recording server username:</Label>
                                 <TextBox Text="{Binding CommunicationsModel.SSHConnectionModel.Username, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Recording server password</Label>
+                                <Label>Recording server password:</Label>
                                 <PasswordBox Name="SSHPasswordBox" PasswordChanged="SSHPasswordBox_OnPasswordChanged"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>SSH start recording script</Label>
+                                <Label>SSH start recording script:</Label>
                                 <TextBox Text="{Binding CommunicationsModel.SSHStartRecordCommand, Mode=TwoWay}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>SSH stop recording script</Label>
+                                <Label>SSH stop recording script:</Label>
                                 <TextBox Text="{Binding CommunicationsModel.SSHStopRecordCommand, Mode=TwoWay}"/>
                             </StackPanel>
-                            <Button Name="RecordingButton" Click="RecordingButton_OnClick">Start Recording</Button>
+                            <Button Name="RecordingButton" Click="RecordingButton_OnClick">Start recording</Button>
                         </StackPanel>
                     </GroupBox>
                 </StackPanel>
