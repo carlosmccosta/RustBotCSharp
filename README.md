@@ -1,5 +1,5 @@
 # RustBotCSharp
-C# libraries and applications for the RustBot project.
+C# libraries and applications for the [RustBot](https://github.com/miguelriemoliveira/RustBot) project.
 
 ## Notes
 
