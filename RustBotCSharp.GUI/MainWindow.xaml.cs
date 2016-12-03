@@ -32,7 +32,7 @@ namespace RustBotCSharp.GUI
 
         private void InitializeViewport3D()
         {
-            Viewport3DXGrid.Geometry = LineBuilder.GenerateGrid(Vector3.UnitY, -20, 20);
+            Viewport3DXGrid.Geometry = LineBuilder.GenerateGrid(SharpDX.Vector3.UnitY, -20, 20);
             Viewport3DXGrid.Transform = new TranslateTransform3D(0, 1.7, 0);
             Viewport3DXGrid.Color = Color.DarkGray;
         }

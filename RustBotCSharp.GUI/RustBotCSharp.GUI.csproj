@@ -152,7 +152,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CameraPoseModel.cs" />
+    <Compile Include="PoseModel.cs" />
     <Compile Include="CommunicationsModel.cs" />
     <Compile Include="DiagnosticsModel.cs" />
     <Compile Include="Encryption.cs" />
@@ -211,6 +211,10 @@
     <ProjectReference Include="..\RustBotCSharp.Communication\RustBotCSharp.Communication.csproj">
       <Project>{82e87d8c-9d4e-4821-8a03-3ce2bcceb978}</Project>
       <Name>RustBotCSharp.Communication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RustBotCSharp.Math\RustBotCSharp.Math.csproj">
+      <Project>{8f32c336-6ce7-443f-adad-ddd7ab2b4cdd}</Project>
+      <Name>RustBotCSharp.Math</Name>
     </ProjectReference>
     <ProjectReference Include="..\RustBotCSharp.MessageConverter\RustBotCSharp.MessageConverter.csproj">
       <Project>{3B7AED41-FB75-45C5-B5C2-9273829E963C}</Project>

@@ -14,17 +14,17 @@
 
     <Window.Resources>
         <Style x:Key="TextBoxFixedWidth" TargetType="{x:Type TextBox}">
-            <Setter Property="Width" Value="77"/>
+            <Setter Property="Width" Value="120"/>
             <Setter Property="IsReadOnlyCaretVisible" Value="True"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="ClipToBounds" Value="True"/>
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
-        
+
         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
             <Setter Property="Height" Value="25"/>
-            <Setter Property="Width" Value="135"/>
+            <Setter Property="Width" Value="125"/>
             <Setter Property="Margin" Value="2 2 2 2"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -32,7 +32,7 @@
 
         <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
             <Setter Property="Height" Value="25"/>
-            <Setter Property="Width" Value="135"/>
+            <Setter Property="Width" Value="168"/>
             <Setter Property="Margin" Value="2 2 2 2"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -40,12 +40,12 @@
 
         <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource {x:Type PasswordBox}}">
             <Setter Property="Height" Value="25"/>
-            <Setter Property="Width" Value="135"/>
+            <Setter Property="Width" Value="168"/>
             <Setter Property="Margin" Value="2 2 2 2"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
-        
+
         <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Margin" Value="5 5 5 5"/>
         </Style>
@@ -58,12 +58,12 @@
 
     <StackPanel Orientation="Vertical">
         <StackPanel Orientation="Horizontal">
-            <GroupBox Header="Left camera">
+            <GroupBox Header="Left camera image">
                 <xctk:Zoombox x:Name="LeftImageZoomBox" >
                     <Image x:Name="LeftImage" HorizontalAlignment="Left"  VerticalAlignment="Top" Stretch="Uniform" Width="600" Height="450" Source="{Binding LeftImageWriteableBitmap}"/>
                 </xctk:Zoombox>
             </GroupBox>
-            <GroupBox Header="Right camera">
+            <GroupBox Header="Right camera image">
                 <xctk:Zoombox x:Name="RightImageZoomBox" >
                     <Image x:Name="RightImage" HorizontalAlignment="Left"  VerticalAlignment="Top" Stretch="Uniform" Width="600" Height="450" Source="{Binding RightImageWriteableBitmap}"/>
                 </xctk:Zoombox>
@@ -72,88 +72,56 @@
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <GroupBox Header="Left camera pose">
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>X (m):</Label>
-                                <TextBox Text="{Binding LeftCameraPoseModel.X}" Style="{StaticResource TextBoxFixedWidth}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Y (m):</Label>
-                                <TextBox Text="{Binding LeftCameraPoseModel.Y}" Style="{StaticResource TextBoxFixedWidth}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Z (m):</Label>
-                                <TextBox Text="{Binding LeftCameraPoseModel.Z}" Style="{StaticResource TextBoxFixedWidth}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Roll (º):</Label>
-                                <TextBox Text="{Binding LeftCameraPoseModel.Roll}" Style="{StaticResource TextBoxFixedWidth}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Pitch (º):</Label>
-                                <TextBox Text="{Binding LeftCameraPoseModel.Pitch}" Style="{StaticResource TextBoxFixedWidth}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Yaw (º):</Label>
-                                <TextBox Text="{Binding LeftCameraPoseModel.Yaw}" Style="{StaticResource TextBoxFixedWidth}"/>
-                            </StackPanel>
+                <GroupBox Header="Stereo vision system pose">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Label>X (m):</Label>
+                            <TextBox Text="{Binding StereoSystemPoseModel.X}" Style="{StaticResource TextBoxFixedWidth}"/>
                         </StackPanel>
-                    </GroupBox>
-                    <GroupBox Header="Right camera pose">
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>X (m):</Label>
-                                <TextBox Text="{Binding RightCameraPoseModel.X}" Style="{StaticResource TextBoxFixedWidth}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Y (m):</Label>
-                                <TextBox Text="{Binding RightCameraPoseModel.Y}" Style="{StaticResource TextBoxFixedWidth}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Z (m):</Label>
-                                <TextBox Text="{Binding RightCameraPoseModel.Z}" Style="{StaticResource TextBoxFixedWidth}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Roll (º):</Label>
-                                <TextBox Text="{Binding RightCameraPoseModel.Roll}" Style="{StaticResource TextBoxFixedWidth}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Pitch (º):</Label>
-                                <TextBox Text="{Binding RightCameraPoseModel.Pitch}" Style="{StaticResource TextBoxFixedWidth}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Yaw (º):</Label>
-                                <TextBox Text="{Binding RightCameraPoseModel.Yaw}" Style="{StaticResource TextBoxFixedWidth}"/>
-                            </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Label>Y (m):</Label>
+                            <TextBox Text="{Binding StereoSystemPoseModel.Y}" Style="{StaticResource TextBoxFixedWidth}"/>
                         </StackPanel>
-                    </GroupBox>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                    <GroupBox Header="GNSS">
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Status:</Label>
-                                <TextBox Text="{Binding GNSSModel.Status}" Style="{StaticResource TextBoxFixedWidth}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Latitude (º):</Label>
-                                <TextBox Text="{Binding GNSSModel.Latitude}" Style="{StaticResource TextBoxFixedWidth}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Longitude (º):</Label>
-                                <TextBox Text="{Binding GNSSModel.Longitude}" Style="{StaticResource TextBoxFixedWidth}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Altitude (m):</Label>
-                                <TextBox Text="{Binding GNSSModel.Altitude}" Style="{StaticResource TextBoxFixedWidth}"/>
-                            </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Label>Z (m):</Label>
+                            <TextBox Text="{Binding StereoSystemPoseModel.Z}" Style="{StaticResource TextBoxFixedWidth}"/>
                         </StackPanel>
-                    </GroupBox>
-                </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Label>Heading (º):</Label>
+                            <TextBox Text="{Binding StereoSystemPoseModel.Heading}" Style="{StaticResource TextBoxFixedWidth}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Label>Attitude (º):</Label>
+                            <TextBox Text="{Binding StereoSystemPoseModel.Attitude}" Style="{StaticResource TextBoxFixedWidth}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Label>Bank (º):</Label>
+                            <TextBox Text="{Binding StereoSystemPoseModel.Bank}" Style="{StaticResource TextBoxFixedWidth}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Global navigation satellite system">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Label>Status:</Label>
+                            <TextBox Text="{Binding GNSSModel.Status}" Style="{StaticResource TextBoxFixedWidth}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Label>Latitude (º):</Label>
+                            <TextBox Text="{Binding GNSSModel.Latitude}" Style="{StaticResource TextBoxFixedWidth}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Label>Longitude (º):</Label>
+                            <TextBox Text="{Binding GNSSModel.Longitude}" Style="{StaticResource TextBoxFixedWidth}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Label>Altitude (m):</Label>
+                            <TextBox Text="{Binding GNSSModel.Altitude}" Style="{StaticResource TextBoxFixedWidth}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
             </StackPanel>
-            <GroupBox Header="Stereo vision point cloud">
+            <GroupBox Header="Stereo vision system point cloud">
                 <hx:Viewport3DX x:Name="Viewport3DX" Width="600" Height="450"
                                 Background="LightGray"
                                 CoordinateSystemLabelForeground="Black"

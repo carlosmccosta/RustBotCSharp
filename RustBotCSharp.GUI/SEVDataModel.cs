@@ -22,8 +22,7 @@ namespace RustBotCSharp.GUI
 
         public WriteableBitmap LeftImageWriteableBitmap { get; set; }
         public WriteableBitmap RightImageWriteableBitmap { get; set; }
-        public CameraPoseModel LeftCameraPoseModel { get; set; } = new CameraPoseModel();
-        public CameraPoseModel RightCameraPoseModel { get; set; } = new CameraPoseModel();
+        public PoseModel StereoSystemPoseModel { get; set; } = new PoseModel();
         public GNSSModel GNSSModel { get; set; } = new GNSSModel();
         public PointGeometry3D PointGeometry3D { get; set; }
         public CommunicationsModel CommunicationsModel { get; set; } = new CommunicationsModel("CommunicationsModel.xml");

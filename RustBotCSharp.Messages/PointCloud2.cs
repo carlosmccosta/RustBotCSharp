@@ -154,9 +154,6 @@ public sealed partial class PointCloud2 : pb::IMessage<PointCloud2> {
   /// <summary>Field number for the "data" field.</summary>
   public const int DataFieldNumber = 8;
   private pb::ByteString data_ = pb::ByteString.Empty;
-  /// <summary>
-  /// repeated PointXYZRGB points = 2;
-  /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public pb::ByteString Data {
     get { return data_; }

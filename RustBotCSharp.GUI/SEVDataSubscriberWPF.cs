@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using RustBotCSharp.Communication;
 using RustBotCSharp.MessageConverter;
+using Geometry = RustBotCSharp.Math.Geometry;
 
 namespace RustBotCSharp.GUI
 {
@@ -36,6 +37,32 @@ namespace RustBotCSharp.GUI
 
                     if (data.PointCloud != null)
                         SEVDataModel.PointGeometry3D = PointCloudConverter.ConvertToPointGeometry3D(data.PointCloud);
+
+                    if (data.NavSatFix != null)
+                    {
+                        SEVDataModel.GNSSModel.Latitude = data.NavSatFix.Latitude;
+                        SEVDataModel.GNSSModel.Longitude= data.NavSatFix.Longitude;
+                        SEVDataModel.GNSSModel.Altitude = data.NavSatFix.Altitude;
+                    }
+
+                    if (data.Odometry?.Pose != null)
+                    {
+                        SEVDataModel.StereoSystemPoseModel.X = data.Odometry.Pose.Pose.Position.X;
+                        SEVDataModel.StereoSystemPoseModel.Y = data.Odometry.Pose.Pose.Position.Y;
+                        SEVDataModel.StereoSystemPoseModel.Z = data.Odometry.Pose.Pose.Position.Z;
+
+                        double heading, attitude, bank;
+                        Geometry.QuaternionToEuler(
+                            data.Odometry.Pose.Pose.Orientation.X,
+                            data.Odometry.Pose.Pose.Orientation.Y,
+                            data.Odometry.Pose.Pose.Orientation.Z,
+                            data.Odometry.Pose.Pose.Orientation.W,
+                            out heading, out attitude, out bank);
+
+                        SEVDataModel.StereoSystemPoseModel.Heading = Geometry.RadianToDegree(heading);
+                        SEVDataModel.StereoSystemPoseModel.Attitude = Geometry.RadianToDegree(attitude);
+                        SEVDataModel.StereoSystemPoseModel.Bank = Geometry.RadianToDegree(bank);
+                    }
                 }
                 stopWatch.Stop();
                 SEVDataModel.DiagnosticsModel.MessageProcessingTimeMilliseconds = stopWatch.ElapsedMilliseconds;

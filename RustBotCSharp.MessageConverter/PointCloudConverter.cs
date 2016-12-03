@@ -54,7 +54,7 @@ namespace RustBotCSharp.MessageConverter
                             float zPosition = BitConverter.ToSingle(pointcloudData, i + zOffset);
                             if (!float.IsNaN(xPosition))
                             {
-                                Vector3 pointPosition = new Vector3(xPosition, yPosition, zPosition);
+                                SharpDX.Vector3 pointPosition = new SharpDX.Vector3(xPosition, yPosition, zPosition);
 
                                 Color4 pointColor = new Color4(
                                 (float)pointcloudData[i + rgbOffset] / (float)byte.MaxValue,

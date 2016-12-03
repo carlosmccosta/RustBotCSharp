@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RustBotCSharp.CLI")]
+[assembly: AssemblyTitle("RustBotCSharp.Math")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RustBotCSharp.CLI")]
+[assembly: AssemblyProduct("RustBotCSharp.Math")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("50141932-74b2-48bc-853b-fe93b4e358ef")]
+[assembly: Guid("8f32c336-6ce7-443f-adad-ddd7ab2b4cdd")]
 
 // Version information for an assembly consists of the following four values:
 //

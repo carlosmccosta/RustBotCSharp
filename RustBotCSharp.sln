@@ -5,13 +5,13 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustBotCSharp.Communication", "RustBotCSharp.Communication\RustBotCSharp.Communication.csproj", "{82E87D8C-9D4E-4821-8A03-3CE2BCCEB978}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustBotCSharp.CLI", "RustBotCSharp.CLI\RustBotCSharp.CLI.csproj", "{50141932-74B2-48BC-853B-FE93B4E358EF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustBotCSharp.GUI", "RustBotCSharp.GUI\RustBotCSharp.GUI.csproj", "{EB8DE1CA-9F52-4CBF-93AC-C19A22196DAB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustBotCSharp.Messages", "RustBotCSharp.Messages\RustBotCSharp.Messages.csproj", "{F1BD7674-6188-42C1-8049-E93A72278B6C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustBotCSharp.MessageConverter", "RustBotCSharp.MessageConverter\RustBotCSharp.MessageConverter.csproj", "{3B7AED41-FB75-45C5-B5C2-9273829E963C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustBotCSharp.Math", "RustBotCSharp.Math\RustBotCSharp.Math.csproj", "{8F32C336-6CE7-443F-ADAD-DDD7AB2B4CDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,6 @@ Global
 		{82E87D8C-9D4E-4821-8A03-3CE2BCCEB978}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82E87D8C-9D4E-4821-8A03-3CE2BCCEB978}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82E87D8C-9D4E-4821-8A03-3CE2BCCEB978}.Release|Any CPU.Build.0 = Release|Any CPU
-		{50141932-74B2-48BC-853B-FE93B4E358EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{50141932-74B2-48BC-853B-FE93B4E358EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{50141932-74B2-48BC-853B-FE93B4E358EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{50141932-74B2-48BC-853B-FE93B4E358EF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EB8DE1CA-9F52-4CBF-93AC-C19A22196DAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EB8DE1CA-9F52-4CBF-93AC-C19A22196DAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB8DE1CA-9F52-4CBF-93AC-C19A22196DAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{3B7AED41-FB75-45C5-B5C2-9273829E963C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B7AED41-FB75-45C5-B5C2-9273829E963C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B7AED41-FB75-45C5-B5C2-9273829E963C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F32C336-6CE7-443F-ADAD-DDD7AB2B4CDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F32C336-6CE7-443F-ADAD-DDD7AB2B4CDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F32C336-6CE7-443F-ADAD-DDD7AB2B4CDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F32C336-6CE7-443F-ADAD-DDD7AB2B4CDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
