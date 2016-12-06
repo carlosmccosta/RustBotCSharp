@@ -15,8 +15,7 @@ namespace RustBotCSharp.MessageConverter
                 byte* pBackBuffer = (byte*)writeableBitmap.BackBuffer;
                 foreach (var pixel in image.Data)
                 {
-                    *pBackBuffer = (byte)pixel;
-                    ++pBackBuffer;
+                    *pBackBuffer++ = (byte)pixel;
                 }
             }
 

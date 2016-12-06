@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using Google.Protobuf;
+using Google.Protobuf.WellKnownTypes;
 using RustBotCSharp.Communication;
 using RustBotCSharp.MessageConverter;
 using Geometry = RustBotCSharp.Math.Geometry;
@@ -10,25 +12,35 @@ namespace RustBotCSharp.GUI
     {
         public SEVDataModel SEVDataModel { get; set; } = new SEVDataModel();
 
-        public override SEVData ReceiveData()
+        public override CodedInputStream ReceiveData()
         {
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
-            SEVData data = base.ReceiveData();
+            CodedInputStream data = base.ReceiveData();
             stopWatch.Stop();
+            SEVDataModel.DiagnosticsModel.MessageNetworkReceiveTimeMilliseconds = (double)stopWatch.Elapsed.Ticks / (double)TimeSpan.TicksPerMillisecond;
             SEVDataModel.DiagnosticsModel.MessageSizeInBytes = LastMessageSizeInBytes;
-            SEVDataModel.DiagnosticsModel.MessageParsingTimeMilliseconds = stopWatch.ElapsedMilliseconds;
             return data;
         }
 
-        public override bool ProcessData(SEVData data)
+        public override SEVData ParseData(CodedInputStream serializedData)
+        {
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+            SEVData data = base.ParseData(serializedData);
+            stopWatch.Stop();
+            SEVDataModel.DiagnosticsModel.MessageParsingTimeMilliseconds = (double)stopWatch.Elapsed.Ticks / (double)TimeSpan.TicksPerMillisecond;
+            return data;
+        }
+
+    public override bool ProcessData(SEVData data)
         {
             try
             {
                 Stopwatch stopWatch = new Stopwatch();
                 stopWatch.Start();
                 if (data != null)
-                {
+                {                    
                     if (data.LeftImage != null)
                         SEVDataModel.LeftImageWriteableBitmap = ImageConverter.ConvertToWrittableBitmap(data.LeftImage);
 
@@ -125,8 +137,9 @@ namespace RustBotCSharp.GUI
                         SEVDataModel.StereoSystemPoseModel.Bank = Geometry.RadianToDegree(bank);
                     }
                 }
+
                 stopWatch.Stop();
-                SEVDataModel.DiagnosticsModel.MessageProcessingTimeMilliseconds = stopWatch.ElapsedMilliseconds;
+                SEVDataModel.DiagnosticsModel.MessageProcessingTimeMilliseconds = (double)stopWatch.Elapsed.Ticks / (double)TimeSpan.TicksPerMillisecond; ;
                 return true;
             }
             catch (Exception)

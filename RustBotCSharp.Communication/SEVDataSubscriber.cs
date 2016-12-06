@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using Google.Protobuf;
 using NetMQ;
 using NetMQ.Sockets;
 
@@ -77,29 +77,28 @@ namespace RustBotCSharp.Communication
         {
             while (true)
             {
-                ProcessData(ReceiveData());
+                ProcessData(ParseData(ReceiveData()));
             }
         }
 
         private void SubscriberSocketOnReceiveReady(object sender, NetMQSocketEventArgs netMqSocketEventArgs)
         {
-            ProcessData(ReceiveData());
+            ProcessData(ParseData(ReceiveData()));
         }
 
-        public virtual SEVData ReceiveData()
+        public virtual CodedInputStream ReceiveData()
         {
-            SEVData data = null;
+            CodedInputStream data = null;
             try
             {
                 Msg msg = new Msg();
                 msg.InitEmpty();
                 SubscriberSocket.Receive(ref msg);
-                
+
                 if (msg.Size > MessageTopicHeaderSize)
                 {
                     LastMessageSizeInBytes = msg.Size - MessageTopicHeaderSize;
-                    byte[] serializedData = msg.Data.Skip(MessageTopicHeaderSize).ToArray();
-                    data = SEVData.Parser.ParseFrom(serializedData);
+                    data = new CodedInputStream(msg.Data, MessageTopicHeaderSize, LastMessageSizeInBytes);
                 }
                 else
                 {
@@ -111,6 +110,22 @@ namespace RustBotCSharp.Communication
                 // ignored
             }
             return data;
+        }
+
+        public virtual SEVData ParseData(CodedInputStream serializedData)
+        {
+            if (serializedData != null)
+            {
+                try
+                {
+                    return SEVData.Parser.ParseFrom(serializedData);
+                }
+                catch (Exception)
+                {
+                    // ignored
+                }
+            }
+            return null;
         }
 
         public virtual bool ProcessData(SEVData data)

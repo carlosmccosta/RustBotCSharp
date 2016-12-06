@@ -215,21 +215,28 @@
         </StackPanel>
         <StatusBar Name="StatusBar" VerticalAlignment="Bottom" Background="LightGray" HorizontalAlignment="Center">
             <StatusBarItem>
-                <Label>NetMQ message size (in bytes):</Label>
+                <Label>NetMQ msg size (in bytes):</Label>
             </StatusBarItem>
             <StatusBarItem>
                 <Label Content="{Binding DiagnosticsModel.MessageSizeInBytes}"/>
             </StatusBarItem>
             <Separator/>
             <StatusBarItem>
-                <Label>NetMQ Receive() and Google Protocol Buffers ParseFrom() time (in milliseconds):</Label>
+                <Label>NetMQ Receive() time (in ms):</Label>
+            </StatusBarItem>
+            <StatusBarItem>
+                <Label Content="{Binding DiagnosticsModel.MessageNetworkReceiveTimeMilliseconds}"/>
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem>
+                <Label>Google Protocol Buffers ParseFrom() time (in ms):</Label>
             </StatusBarItem>
             <StatusBarItem>
                 <Label Content="{Binding DiagnosticsModel.MessageParsingTimeMilliseconds}"/>
             </StatusBarItem>
             <Separator/>
             <StatusBarItem>
-                <Label>ProcessData() time required to convert SEVData to WPF controls (in milliseconds):</Label>
+                <Label>Time required to convert SEVData to WPF controls (in ms):</Label>
             </StatusBarItem>
             <StatusBarItem>
                 <Label Content="{Binding DiagnosticsModel.MessageProcessingTimeMilliseconds}"/>
