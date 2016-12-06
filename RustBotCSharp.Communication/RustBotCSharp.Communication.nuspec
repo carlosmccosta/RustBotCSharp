@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Carlos Miguel Correira da Costa</authors>
+    <owners>Carlos Miguel Correira da Costa</owners>
+    <licenseUrl>https://github.com/carlosmccosta/RustBotCSharp/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/carlosmccosta/RustBotCSharp</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Communication library for the RustBot project using NetMQ and Google Protocol Buffers</description>
+    <copyright>Copyright 2016</copyright>
+    <tags>RustBot CommunicationProtocol</tags>
+  </metadata>
+</package>
