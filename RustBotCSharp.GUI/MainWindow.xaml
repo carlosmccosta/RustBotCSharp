@@ -54,6 +54,18 @@
             <Setter Property="Margin" Value="5 5 5 5"/>
         </Style>
 
+        <Style x:Key="StatusBarTextBoxFixedWidth" TargetType="{x:Type TextBox}">
+            <Setter Property="Width" Value="45"/>
+            <Setter Property="IsReadOnlyCaretVisible" Value="True"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="ClipToBounds" Value="True"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="LightGray"/>
+        </Style>
+        
         <Style TargetType="Image">
             <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor" />
             <Setter Property="RenderOptions.EdgeMode" Value="Unspecified" />
@@ -225,21 +237,21 @@
                 <Label>NetMQ Receive() time (in ms):</Label>
             </StatusBarItem>
             <StatusBarItem>
-                <Label Content="{Binding DiagnosticsModel.MessageNetworkReceiveTimeMilliseconds}"/>
+                <TextBox Text="{Binding DiagnosticsModel.MessageNetworkReceiveTimeMilliseconds, StringFormat=N3}" Style="{StaticResource StatusBarTextBoxFixedWidth}"/>
             </StatusBarItem>
             <Separator/>
             <StatusBarItem>
                 <Label>Google Protocol Buffers ParseFrom() time (in ms):</Label>
             </StatusBarItem>
             <StatusBarItem>
-                <Label Content="{Binding DiagnosticsModel.MessageParsingTimeMilliseconds}"/>
+                <TextBox Text="{Binding DiagnosticsModel.MessageParsingTimeMilliseconds, StringFormat=N3}" Style="{StaticResource StatusBarTextBoxFixedWidth}"/>
             </StatusBarItem>
             <Separator/>
             <StatusBarItem>
                 <Label>Time required to convert SEVData to WPF controls (in ms):</Label>
             </StatusBarItem>
             <StatusBarItem>
-                <Label Content="{Binding DiagnosticsModel.MessageProcessingTimeMilliseconds}"/>
+                <TextBox Text="{Binding DiagnosticsModel.MessageProcessingTimeMilliseconds, StringFormat=N3}" Style="{StaticResource StatusBarTextBoxFixedWidth}"/>
             </StatusBarItem>
         </StatusBar>
     </StackPanel>
