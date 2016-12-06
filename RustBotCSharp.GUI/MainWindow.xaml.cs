@@ -56,7 +56,7 @@ namespace RustBotCSharp.GUI
         {
             if (_streamingActive)
             {
-                SEVDataSubscriberWPF.StopReceivingDataAsynchronously();
+                SEVDataSubscriberWPF.StopReceivingData();
                 _streamingActive = false;
                 StreamingButton.Content = _inactiveStreamingText;
                 return true;

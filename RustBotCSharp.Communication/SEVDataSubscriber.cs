@@ -57,27 +57,28 @@ namespace RustBotCSharp.Communication
             }
         }
 
-        public bool StopReceivingDataAsynchronously()
-        {
-            try
-            {
-                SubscriberSocket.ReceiveReady -= SubscriberSocketOnReceiveReady;
-                NetMqPoller.Remove(SubscriberSocket);
-                NetMqPoller.StopAsync();
-                NetMqPoller.Dispose();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
         public void StartReceivingDataSynchronously()
         {
             while (true)
             {
                 ProcessData(ParseData(ReceiveData()));
+            }
+        }
+
+        public bool StopReceivingData()
+        {
+            try
+            {
+                NetMqPoller.Stop();
+                SubscriberSocket.Dispose();
+                SubscriberSocket = null;
+                NetMqPoller.Dispose();
+                NetMqPoller = null;
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
 
