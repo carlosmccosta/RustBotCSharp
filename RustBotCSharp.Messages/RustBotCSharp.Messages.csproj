@@ -41,6 +41,7 @@
     <Compile Include="Header.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="NavSatFix.cs" />
+    <Compile Include="NavSatStatus.cs" />
     <Compile Include="Odometry.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="PointCloud2.cs" />

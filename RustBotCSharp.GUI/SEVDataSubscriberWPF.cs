@@ -41,11 +41,72 @@ namespace RustBotCSharp.GUI
                     if (data.NavSatFix != null)
                     {
                         SEVDataModel.GNSSModel.Latitude = data.NavSatFix.Latitude;
-                        SEVDataModel.GNSSModel.Longitude= data.NavSatFix.Longitude;
+                        SEVDataModel.GNSSModel.Longitude = data.NavSatFix.Longitude;
                         SEVDataModel.GNSSModel.Altitude = data.NavSatFix.Altitude;
+
+                        if (data.NavSatFix.Status != null)
+                        {
+                            switch (data.NavSatFix.Status.Status)
+                            {
+                                case -1:
+                                {
+                                    SEVDataModel.GNSSModel.Status = "NO_FIX";
+                                    break;
+                                }
+                                case 0:
+                                {
+                                    SEVDataModel.GNSSModel.Status = "FIX";
+                                    break;
+                                }
+                                case 1:
+                                {
+                                    SEVDataModel.GNSSModel.Status = "SBAS_FIX";
+                                    break;
+                                }
+                                case 2:
+                                {
+                                    SEVDataModel.GNSSModel.Status = "GBAS_FIX";
+                                    break;
+                                }
+                                default:
+                                {
+                                    SEVDataModel.GNSSModel.Status = "Other";
+                                    break;
+                                }
+                            }
+
+                            switch (data.NavSatFix.Status.Service)
+                            {
+                                case 1:
+                                {
+                                    SEVDataModel.GNSSModel.Service = "GPS";
+                                    break;
+                                }
+                                case 2:
+                                {
+                                    SEVDataModel.GNSSModel.Service = "GLONASS";
+                                    break;
+                                }
+                                case 4:
+                                {
+                                    SEVDataModel.GNSSModel.Service = "COMPASS";
+                                    break;
+                                }
+                                case 8:
+                                {
+                                    SEVDataModel.GNSSModel.Service = "GALILEO";
+                                    break;
+                                }
+                                default:
+                                {
+                                    SEVDataModel.GNSSModel.Service = "Other";
+                                    break;
+                                }
+                            }
+                        }
                     }
 
-                    if (data.Odometry?.Pose != null)
+                    if (data.Odometry?.Pose?.Pose?.Position != null && data.Odometry?.Pose?.Pose?.Orientation != null)
                     {
                         SEVDataModel.StereoSystemPoseModel.X = data.Odometry.Pose.Pose.Position.X;
                         SEVDataModel.StereoSystemPoseModel.Y = data.Odometry.Pose.Pose.Position.Y;

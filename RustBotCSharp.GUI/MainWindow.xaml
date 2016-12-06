@@ -14,7 +14,7 @@
 
     <Window.Resources>
         <Style x:Key="TextBoxFixedWidth" TargetType="{x:Type TextBox}">
-            <Setter Property="Width" Value="42"/>
+            <Setter Property="Width" Value="55"/>
             <Setter Property="IsReadOnlyCaretVisible" Value="True"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -109,6 +109,10 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Label>Status:</Label>
                             <TextBox Text="{Binding GNSSModel.Status}" Style="{StaticResource TextBoxFixedWidth}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Label>Service:</Label>
+                            <TextBox Text="{Binding GNSSModel.Service}" Style="{StaticResource TextBoxFixedWidth}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Label>Latitude (º):</Label>

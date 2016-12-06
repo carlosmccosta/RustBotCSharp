@@ -20,13 +20,15 @@ public static partial class NavSatFixReflection {
   static NavSatFixReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "Cg9OYXZTYXRGaXgucHJvdG8aDEhlYWRlci5wcm90byJbCglOYXZTYXRGaXgS",
-          "FwoGaGVhZGVyGAEgASgLMgcuSGVhZGVyEhAKCGxhdGl0dWRlGAIgASgBEhEK",
-          "CWxvbmdpdHVkZRgDIAEoARIQCghhbHRpdHVkZRgEIAEoAWIGcHJvdG8z"));
+          "Cg9OYXZTYXRGaXgucHJvdG8aDEhlYWRlci5wcm90bxoSTmF2U2F0U3RhdHVz",
+          "LnByb3RvInoKCU5hdlNhdEZpeBIXCgZoZWFkZXIYASABKAsyBy5IZWFkZXIS",
+          "EAoIbGF0aXR1ZGUYAiABKAESEQoJbG9uZ2l0dWRlGAMgASgBEhAKCGFsdGl0",
+          "dWRlGAQgASgBEh0KBnN0YXR1cxgFIAEoCzINLk5hdlNhdFN0YXR1c2IGcHJv",
+          "dG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-        new pbr::FileDescriptor[] { global::HeaderReflection.Descriptor, },
+        new pbr::FileDescriptor[] { global::HeaderReflection.Descriptor, global::NavSatStatusReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::NavSatFix), global::NavSatFix.Parser, new[]{ "Header", "Latitude", "Longitude", "Altitude" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::NavSatFix), global::NavSatFix.Parser, new[]{ "Header", "Latitude", "Longitude", "Altitude", "Status" }, null, null, null)
         }));
   }
   #endregion
@@ -61,6 +63,7 @@ public sealed partial class NavSatFix : pb::IMessage<NavSatFix> {
     latitude_ = other.latitude_;
     longitude_ = other.longitude_;
     altitude_ = other.altitude_;
+    Status = other.status_ != null ? other.Status.Clone() : null;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -112,6 +115,17 @@ public sealed partial class NavSatFix : pb::IMessage<NavSatFix> {
     }
   }
 
+  /// <summary>Field number for the "status" field.</summary>
+  public const int StatusFieldNumber = 5;
+  private global::NavSatStatus status_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::NavSatStatus Status {
+    get { return status_; }
+    set {
+      status_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override bool Equals(object other) {
     return Equals(other as NavSatFix);
@@ -129,6 +143,7 @@ public sealed partial class NavSatFix : pb::IMessage<NavSatFix> {
     if (Latitude != other.Latitude) return false;
     if (Longitude != other.Longitude) return false;
     if (Altitude != other.Altitude) return false;
+    if (!object.Equals(Status, other.Status)) return false;
     return true;
   }
 
@@ -139,6 +154,7 @@ public sealed partial class NavSatFix : pb::IMessage<NavSatFix> {
     if (Latitude != 0D) hash ^= Latitude.GetHashCode();
     if (Longitude != 0D) hash ^= Longitude.GetHashCode();
     if (Altitude != 0D) hash ^= Altitude.GetHashCode();
+    if (status_ != null) hash ^= Status.GetHashCode();
     return hash;
   }
 
@@ -165,6 +181,10 @@ public sealed partial class NavSatFix : pb::IMessage<NavSatFix> {
       output.WriteRawTag(33);
       output.WriteDouble(Altitude);
     }
+    if (status_ != null) {
+      output.WriteRawTag(42);
+      output.WriteMessage(Status);
+    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -181,6 +201,9 @@ public sealed partial class NavSatFix : pb::IMessage<NavSatFix> {
     }
     if (Altitude != 0D) {
       size += 1 + 8;
+    }
+    if (status_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Status);
     }
     return size;
   }
@@ -204,6 +227,12 @@ public sealed partial class NavSatFix : pb::IMessage<NavSatFix> {
     }
     if (other.Altitude != 0D) {
       Altitude = other.Altitude;
+    }
+    if (other.status_ != null) {
+      if (status_ == null) {
+        status_ = new global::NavSatStatus();
+      }
+      Status.MergeFrom(other.Status);
     }
   }
 
@@ -232,6 +261,13 @@ public sealed partial class NavSatFix : pb::IMessage<NavSatFix> {
         }
         case 33: {
           Altitude = input.ReadDouble();
+          break;
+        }
+        case 42: {
+          if (status_ == null) {
+            status_ = new global::NavSatStatus();
+          }
+          input.ReadMessage(status_);
           break;
         }
       }
