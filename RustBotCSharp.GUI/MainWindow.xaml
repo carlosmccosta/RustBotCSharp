@@ -10,7 +10,7 @@
         xmlns:sdx="clr-namespace:SharpDX;assembly=SharpDX"
         mc:Ignorable="d"
         Icon="inesc-tec.ico"
-        Title="SEV Visualizer" SizeToContent="WidthAndHeight" Left="0" Top="0" ResizeMode="CanMinimize">
+        Title="SEV Visualizer" SizeToContent="WidthAndHeight" Left="0" Top="0" Height="Auto" Width="Auto">
 
     <Window.Resources>
         <Style x:Key="TextBoxFixedWidth" TargetType="{x:Type TextBox}">
@@ -72,187 +72,189 @@
         </Style>
     </Window.Resources>
 
-    <StackPanel Orientation="Vertical">
-        <StackPanel Orientation="Horizontal">
-            <GroupBox Header="Left camera image">
-                <xctk:Zoombox x:Name="LeftImageZoomBox" >
-                    <Image x:Name="LeftImage" HorizontalAlignment="Left"  VerticalAlignment="Top" Stretch="Uniform" Width="600" Height="450" Source="{Binding LeftImageWriteableBitmap}"/>
-                </xctk:Zoombox>
-            </GroupBox>
-            <GroupBox Header="Right camera image">
-                <xctk:Zoombox x:Name="RightImageZoomBox" >
-                    <Image x:Name="RightImage" HorizontalAlignment="Left"  VerticalAlignment="Top" Stretch="Uniform" Width="600" Height="450" Source="{Binding RightImageWriteableBitmap}"/>
-                </xctk:Zoombox>
-            </GroupBox>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <GroupBox Header="Stereo vision pose">
-                    <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Label>X (m):</Label>
-                            <TextBox Text="{Binding StereoSystemPoseModel.X, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Label>Y (m):</Label>
-                            <TextBox Text="{Binding StereoSystemPoseModel.Y, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Label>Z (m):</Label>
-                            <TextBox Text="{Binding StereoSystemPoseModel.Z, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Label>Heading (º):</Label>
-                            <TextBox Text="{Binding StereoSystemPoseModel.Heading, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Label>Attitude (º):</Label>
-                            <TextBox Text="{Binding StereoSystemPoseModel.Attitude, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Label>Bank (º):</Label>
-                            <TextBox Text="{Binding StereoSystemPoseModel.Bank, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
-                        </StackPanel>
-                    </StackPanel>
+    <Viewbox>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <GroupBox Header="Left camera image">
+                    <xctk:Zoombox x:Name="LeftImageZoomBox" >
+                        <Image x:Name="LeftImage" HorizontalAlignment="Left"  VerticalAlignment="Top" Stretch="Uniform" Width="600" Height="450" Source="{Binding LeftImageWriteableBitmap}"/>
+                    </xctk:Zoombox>
                 </GroupBox>
-                <GroupBox Header="GNSS">
-                    <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Label>Status:</Label>
-                            <TextBox Text="{Binding GNSSModel.Status}" Style="{StaticResource TextBoxFixedWidth}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Label>Service:</Label>
-                            <TextBox Text="{Binding GNSSModel.Service}" Style="{StaticResource TextBoxFixedWidth}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Label>Latitude (º):</Label>
-                            <TextBox Text="{Binding GNSSModel.Latitude, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Label>Longitude (º):</Label>
-                            <TextBox Text="{Binding GNSSModel.Longitude, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Label>Altitude (m):</Label>
-                            <TextBox Text="{Binding GNSSModel.Altitude, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
-                        </StackPanel>
-                    </StackPanel>
+                <GroupBox Header="Right camera image">
+                    <xctk:Zoombox x:Name="RightImageZoomBox" >
+                        <Image x:Name="RightImage" HorizontalAlignment="Left"  VerticalAlignment="Top" Stretch="Uniform" Width="600" Height="450" Source="{Binding RightImageWriteableBitmap}"/>
+                    </xctk:Zoombox>
                 </GroupBox>
             </StackPanel>
-            <GroupBox Header="Stereo vision system point cloud">
-                <hx:Viewport3DX x:Name="Viewport3DX" Width="660" Height="495"
-                                Background="LightGray"
-                                CoordinateSystemLabelForeground="Black"
-                                CoordinateSystemHeight="125"
-                                CoordinateSystemWidth="125"
-                                CoordinateSystemLabelX="X"
-                                CoordinateSystemLabelY="Y"
-                                CoordinateSystemLabelZ="Z"
-                                IsMoveEnabled="True"
-                                IsPanEnabled="True"
-                                IsRotationEnabled="True"
-                                IsTouchZoomEnabled="True"
-                                IsZoomEnabled="True"
-                                ModelUpDirection="0,-1,0"
-                                ShowCoordinateSystem="True"
-                                ShowFieldOfView="True"
-                                ShowViewCube="False"
-                                ZoomExtentsWhenLoaded="False">
-                    <hx:Viewport3DX.InputBindings>
-                        <KeyBinding Command="hx:ViewportCommands.ZoomExtents" Gesture="Control+E" />
-                        <MouseBinding Command="hx:ViewportCommands.Rotate" Gesture="RightClick" />
-                        <MouseBinding Command="hx:ViewportCommands.Zoom" Gesture="MiddleClick" />
-                        <MouseBinding Command="hx:ViewportCommands.Pan" Gesture="LeftClick" />
-                    </hx:Viewport3DX.InputBindings>
-                    <hx:AmbientLight3D />
-                    <hx:PointGeometryModel3D Geometry="{Binding PointGeometry3D}" Color="{x:Static sdx:Color.White}" Figure="Ellipse" Size="3 3" HitTestThickness="1"/>
-                    <hx:LineGeometryModel3D x:Name="Viewport3DXGrid"/>
-                    <hx:Viewport3DX.Camera>
-                        <hx:PerspectiveCamera LookDirection="0,0,1" UpDirection="0,-1,0" Position="0,0,1" FieldOfView="60"/>
-                    </hx:Viewport3DX.Camera>
-                </hx:Viewport3DX>
-            </GroupBox>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <StackPanel Orientation="Vertical">
-                    <GroupBox Header="Streaming configuration">
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <GroupBox Header="Stereo vision pose">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Publisher IP:</Label>
-                                <TextBox Text="{Binding CommunicationsModel.StreamingPublisherCommunicationsModel.IP, Mode=TwoWay}"/>
+                                <Label>X (m):</Label>
+                                <TextBox Text="{Binding StereoSystemPoseModel.X, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Publisher port:</Label>
-                                <TextBox Text="{Binding CommunicationsModel.StreamingPublisherCommunicationsModel.Port, Mode=TwoWay}"/>
+                                <Label>Y (m):</Label>
+                                <TextBox Text="{Binding StereoSystemPoseModel.Y, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Publisher topic:</Label>
-                                <TextBox Text="{Binding CommunicationsModel.StreamingPublisherTopic, Mode=TwoWay}"/>
+                                <Label>Z (m):</Label>
+                                <TextBox Text="{Binding StereoSystemPoseModel.Z, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
-                            <Button Name="StreamingButton" Click="StreamingButton_OnClick">Start streaming</Button>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>Heading (º):</Label>
+                                <TextBox Text="{Binding StereoSystemPoseModel.Heading, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>Attitude (º):</Label>
+                                <TextBox Text="{Binding StereoSystemPoseModel.Attitude, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label>Bank (º):</Label>
+                                <TextBox Text="{Binding StereoSystemPoseModel.Bank, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
+                            </StackPanel>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Header="Remote recording configuration (rosbag format)">
+                    <GroupBox Header="GNSS">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Recording server host:</Label>
-                                <TextBox Text="{Binding CommunicationsModel.SSHConnectionModel.Host, Mode=TwoWay}"/>
+                                <Label>Status:</Label>
+                                <TextBox Text="{Binding GNSSModel.Status}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Recording server port:</Label>
-                                <TextBox Text="{Binding CommunicationsModel.SSHConnectionModel.Port, Mode=TwoWay}"/>
+                                <Label>Service:</Label>
+                                <TextBox Text="{Binding GNSSModel.Service}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Recording server username:</Label>
-                                <TextBox Text="{Binding CommunicationsModel.SSHConnectionModel.Username, Mode=TwoWay}"/>
+                                <Label>Latitude (º):</Label>
+                                <TextBox Text="{Binding GNSSModel.Latitude, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>Recording server password:</Label>
-                                <PasswordBox Name="SSHPasswordBox" PasswordChanged="SSHPasswordBox_OnPasswordChanged"/>
+                                <Label>Longitude (º):</Label>
+                                <TextBox Text="{Binding GNSSModel.Longitude, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>SSH start recording script:</Label>
-                                <TextBox Text="{Binding CommunicationsModel.SSHStartRecordCommand, Mode=TwoWay}"/>
+                                <Label>Altitude (m):</Label>
+                                <TextBox Text="{Binding GNSSModel.Altitude, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Label>SSH stop recording script:</Label>
-                                <TextBox Text="{Binding CommunicationsModel.SSHStopRecordCommand, Mode=TwoWay}"/>
-                            </StackPanel>
-                            <Button Name="RecordingButton" Click="RecordingButton_OnClick">Start recording</Button>
                         </StackPanel>
                     </GroupBox>
                 </StackPanel>
+                <GroupBox Header="Stereo vision system point cloud">
+                    <hx:Viewport3DX x:Name="Viewport3DX" Width="660" Height="495"
+                                    Background="LightGray"
+                                    CoordinateSystemLabelForeground="Black"
+                                    CoordinateSystemHeight="125"
+                                    CoordinateSystemWidth="125"
+                                    CoordinateSystemLabelX="X"
+                                    CoordinateSystemLabelY="Y"
+                                    CoordinateSystemLabelZ="Z"
+                                    IsMoveEnabled="True"
+                                    IsPanEnabled="True"
+                                    IsRotationEnabled="True"
+                                    IsTouchZoomEnabled="True"
+                                    IsZoomEnabled="True"
+                                    ModelUpDirection="0,-1,0"
+                                    ShowCoordinateSystem="True"
+                                    ShowFieldOfView="True"
+                                    ShowViewCube="False"
+                                    ZoomExtentsWhenLoaded="False">
+                        <hx:Viewport3DX.InputBindings>
+                            <KeyBinding Command="hx:ViewportCommands.ZoomExtents" Gesture="Control+E" />
+                            <MouseBinding Command="hx:ViewportCommands.Rotate" Gesture="RightClick" />
+                            <MouseBinding Command="hx:ViewportCommands.Zoom" Gesture="MiddleClick" />
+                            <MouseBinding Command="hx:ViewportCommands.Pan" Gesture="LeftClick" />
+                        </hx:Viewport3DX.InputBindings>
+                        <hx:AmbientLight3D />
+                        <hx:PointGeometryModel3D Geometry="{Binding PointGeometry3D}" Color="{x:Static sdx:Color.White}" Figure="Ellipse" Size="3 3" HitTestThickness="1"/>
+                        <hx:LineGeometryModel3D x:Name="Viewport3DXGrid"/>
+                        <hx:Viewport3DX.Camera>
+                            <hx:PerspectiveCamera LookDirection="0,0,1" UpDirection="0,-1,0" Position="0,0,1" FieldOfView="60"/>
+                        </hx:Viewport3DX.Camera>
+                    </hx:Viewport3DX>
+                </GroupBox>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel Orientation="Vertical">
+                        <GroupBox Header="Streaming configuration">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Label>Publisher IP:</Label>
+                                    <TextBox Text="{Binding CommunicationsModel.StreamingPublisherCommunicationsModel.IP, Mode=TwoWay}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Label>Publisher port:</Label>
+                                    <TextBox Text="{Binding CommunicationsModel.StreamingPublisherCommunicationsModel.Port, Mode=TwoWay}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Label>Publisher topic:</Label>
+                                    <TextBox Text="{Binding CommunicationsModel.StreamingPublisherTopic, Mode=TwoWay}"/>
+                                </StackPanel>
+                                <Button Name="StreamingButton" Click="StreamingButton_OnClick">Start streaming</Button>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="Remote recording configuration (rosbag format)">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Label>Recording server host:</Label>
+                                    <TextBox Text="{Binding CommunicationsModel.SSHConnectionModel.Host, Mode=TwoWay}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Label>Recording server port:</Label>
+                                    <TextBox Text="{Binding CommunicationsModel.SSHConnectionModel.Port, Mode=TwoWay}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Label>Recording server username:</Label>
+                                    <TextBox Text="{Binding CommunicationsModel.SSHConnectionModel.Username, Mode=TwoWay}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Label>Recording server password:</Label>
+                                    <PasswordBox Name="SSHPasswordBox" PasswordChanged="SSHPasswordBox_OnPasswordChanged"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Label>SSH start recording script:</Label>
+                                    <TextBox Text="{Binding CommunicationsModel.SSHStartRecordCommand, Mode=TwoWay}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Label>SSH stop recording script:</Label>
+                                    <TextBox Text="{Binding CommunicationsModel.SSHStopRecordCommand, Mode=TwoWay}"/>
+                                </StackPanel>
+                                <Button Name="RecordingButton" Click="RecordingButton_OnClick">Start recording</Button>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </StackPanel>
             </StackPanel>
+            <StatusBar Name="StatusBar" VerticalAlignment="Bottom" Background="LightGray" HorizontalAlignment="Center">
+                <StatusBarItem>
+                    <Label>NetMQ msg size (in bytes):</Label>
+                </StatusBarItem>
+                <StatusBarItem>
+                    <Label Content="{Binding DiagnosticsModel.MessageSizeInBytes}"/>
+                </StatusBarItem>
+                <Separator/>
+                <StatusBarItem>
+                    <Label>NetMQ Receive() time (in ms):</Label>
+                </StatusBarItem>
+                <StatusBarItem>
+                    <TextBox Text="{Binding DiagnosticsModel.MessageNetworkReceiveTimeMilliseconds, StringFormat=N3}" Style="{StaticResource StatusBarTextBoxFixedWidth}"/>
+                </StatusBarItem>
+                <Separator/>
+                <StatusBarItem>
+                    <Label>Google Protocol Buffers ParseFrom() time (in ms):</Label>
+                </StatusBarItem>
+                <StatusBarItem>
+                    <TextBox Text="{Binding DiagnosticsModel.MessageParsingTimeMilliseconds, StringFormat=N3}" Style="{StaticResource StatusBarTextBoxFixedWidth}"/>
+                </StatusBarItem>
+                <Separator/>
+                <StatusBarItem>
+                    <Label>Time required to convert SEVData to WPF controls (in ms):</Label>
+                </StatusBarItem>
+                <StatusBarItem>
+                    <TextBox Text="{Binding DiagnosticsModel.MessageProcessingTimeMilliseconds, StringFormat=N3}" Style="{StaticResource StatusBarTextBoxFixedWidth}"/>
+                </StatusBarItem>
+            </StatusBar>
         </StackPanel>
-        <StatusBar Name="StatusBar" VerticalAlignment="Bottom" Background="LightGray" HorizontalAlignment="Center">
-            <StatusBarItem>
-                <Label>NetMQ msg size (in bytes):</Label>
-            </StatusBarItem>
-            <StatusBarItem>
-                <Label Content="{Binding DiagnosticsModel.MessageSizeInBytes}"/>
-            </StatusBarItem>
-            <Separator/>
-            <StatusBarItem>
-                <Label>NetMQ Receive() time (in ms):</Label>
-            </StatusBarItem>
-            <StatusBarItem>
-                <TextBox Text="{Binding DiagnosticsModel.MessageNetworkReceiveTimeMilliseconds, StringFormat=N3}" Style="{StaticResource StatusBarTextBoxFixedWidth}"/>
-            </StatusBarItem>
-            <Separator/>
-            <StatusBarItem>
-                <Label>Google Protocol Buffers ParseFrom() time (in ms):</Label>
-            </StatusBarItem>
-            <StatusBarItem>
-                <TextBox Text="{Binding DiagnosticsModel.MessageParsingTimeMilliseconds, StringFormat=N3}" Style="{StaticResource StatusBarTextBoxFixedWidth}"/>
-            </StatusBarItem>
-            <Separator/>
-            <StatusBarItem>
-                <Label>Time required to convert SEVData to WPF controls (in ms):</Label>
-            </StatusBarItem>
-            <StatusBarItem>
-                <TextBox Text="{Binding DiagnosticsModel.MessageProcessingTimeMilliseconds, StringFormat=N3}" Style="{StaticResource StatusBarTextBoxFixedWidth}"/>
-            </StatusBarItem>
-        </StatusBar>
-    </StackPanel>
+    </Viewbox>
 </Window>
