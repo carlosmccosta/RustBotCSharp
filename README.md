@@ -1,9 +1,9 @@
 # RustBotCSharp
 C# libraries and GUI application for the [RustBot](https://github.com/miguelriemoliveira/RustBot) project.
 
-![RustBot C# GUI](docs/SEV-Visualizer.PNG "RustBot C# GUI")
+[![RustBot C# GUI](docs/SEV-Visualizer.PNG)](http://www.youtube.com/watch?v=jA0ByGyGTN0)
 
-Figure 1: RustBot C# GUI
+Video 1: RustBot C# GUI
 
 
 # RustBotCSharp.GUI application
