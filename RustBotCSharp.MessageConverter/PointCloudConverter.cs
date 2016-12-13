@@ -57,9 +57,9 @@ namespace RustBotCSharp.MessageConverter
                                 SharpDX.Vector3 pointPosition = new SharpDX.Vector3(xPosition, yPosition, zPosition);
 
                                 Color4 pointColor = new Color4(
-                                (float)pointcloudData[i + rgbOffset] / (float)byte.MaxValue,
-                                (float)pointcloudData[i + rgbOffset + 1] / (float)byte.MaxValue,
                                 (float)pointcloudData[i + rgbOffset + 2] / (float)byte.MaxValue,
+                                (float)pointcloudData[i + rgbOffset + 1] / (float)byte.MaxValue,
+                                (float)pointcloudData[i + rgbOffset] / (float)byte.MaxValue,
                                 1);
 
                                 pointGeometry3D.Indices.Add(pointGeometry3D.Positions.Count);

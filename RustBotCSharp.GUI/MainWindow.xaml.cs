@@ -83,6 +83,7 @@ namespace RustBotCSharp.GUI
 
         public bool InitializeRecording()
         {
+            SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Initializing recording...";
             try
             {
                 SSHClient = new SshClient(
@@ -92,22 +93,29 @@ namespace RustBotCSharp.GUI
                     Encryption.DecryptString(SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Password, _encryptionKey));
                 SSHClient.ConnectionInfo.Timeout = TimeSpan.FromSeconds(1.0);
                 SSHClient.Connect();
-                if (ExecuteSSHCommand(SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHStartRecordCommand) == 0)
+
+                int exitStatus = ExecuteSSHCommand(SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHStartRecordCommand);
+                if (exitStatus == 0)
                 {
                     _recordActive = true;
                     RecordingButton.Content = _activeRecordingText;
+                    SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Recording started.";
                     return true;
                 }
+
+                SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Failed to run start recording script with exit code " + exitStatus;
+                return false;
             }
             catch (Exception)
             {
+                SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Failed to connect to SSH server...";
                 return false;
             }
-            return false;
         }
 
         public bool StopRecording()
         {
+            SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Stopping recording...";
             int exitStatus = ExecuteSSHCommand(SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHStopRecordCommand);
             if (exitStatus == 0 || exitStatus == 1)
             {
@@ -115,8 +123,10 @@ namespace RustBotCSharp.GUI
                 RecordingButton.Content = _inactiveRecordingText;
                 SSHClient.Disconnect();
                 SSHClient.Dispose();
+                SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Recording stopped.";
                 return true;
             }
+            SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Failed to stop recording with SSH exit code " + exitStatus;
             return false;
         }
 

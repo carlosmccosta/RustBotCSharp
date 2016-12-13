@@ -14,7 +14,7 @@
 
     <Window.Resources>
         <Style x:Key="TextBoxFixedWidth" TargetType="{x:Type TextBox}">
-            <Setter Property="Width" Value="55"/>
+            <Setter Property="Width" Value="66"/>
             <Setter Property="IsReadOnlyCaretVisible" Value="True"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -93,27 +93,27 @@
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>X (m):</Label>
-                                <TextBox Text="{Binding StereoSystemPoseModel.X, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
+                                <TextBox Text="{Binding StereoSystemPoseModel.X, StringFormat=N3}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Y (m):</Label>
-                                <TextBox Text="{Binding StereoSystemPoseModel.Y, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
+                                <TextBox Text="{Binding StereoSystemPoseModel.Y, StringFormat=N3}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Z (m):</Label>
-                                <TextBox Text="{Binding StereoSystemPoseModel.Z, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
+                                <TextBox Text="{Binding StereoSystemPoseModel.Z, StringFormat=N3}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Heading (º):</Label>
-                                <TextBox Text="{Binding StereoSystemPoseModel.Heading, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
+                                <TextBox Text="{Binding StereoSystemPoseModel.Heading, StringFormat=N3}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Attitude (º):</Label>
-                                <TextBox Text="{Binding StereoSystemPoseModel.Attitude, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
+                                <TextBox Text="{Binding StereoSystemPoseModel.Attitude, StringFormat=N3}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Bank (º):</Label>
-                                <TextBox Text="{Binding StereoSystemPoseModel.Bank, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
+                                <TextBox Text="{Binding StereoSystemPoseModel.Bank, StringFormat=N3}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                         </StackPanel>
                     </GroupBox>
@@ -129,15 +129,15 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Latitude (º):</Label>
-                                <TextBox Text="{Binding GNSSModel.Latitude, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
+                                <TextBox Text="{Binding GNSSModel.Latitude, StringFormat=N6}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Longitude (º):</Label>
-                                <TextBox Text="{Binding GNSSModel.Longitude, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
+                                <TextBox Text="{Binding GNSSModel.Longitude, StringFormat=N6}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Label>Altitude (m):</Label>
-                                <TextBox Text="{Binding GNSSModel.Altitude, StringFormat=N2}" Style="{StaticResource TextBoxFixedWidth}"/>
+                                <TextBox Text="{Binding GNSSModel.Altitude, StringFormat=N6}" Style="{StaticResource TextBoxFixedWidth}"/>
                             </StackPanel>
                         </StackPanel>
                     </GroupBox>
@@ -221,6 +221,11 @@
                                     <TextBox Text="{Binding CommunicationsModel.SSHStopRecordCommand, Mode=TwoWay}"/>
                                 </StackPanel>
                                 <Button Name="RecordingButton" Click="RecordingButton_OnClick">Start recording</Button>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Height="60">
+                                    <Label VerticalContentAlignment="Center">SSH status:</Label>
+                                    <TextBox Text="{Binding CommunicationsModel.SSHConnectionModel.Status}" TextWrapping="Wrap" IsReadOnlyCaretVisible="True"
+                                             BorderThickness="0" Height="60" VerticalContentAlignment="Center"/>
+                                </StackPanel>
                             </StackPanel>
                         </GroupBox>
                     </StackPanel>

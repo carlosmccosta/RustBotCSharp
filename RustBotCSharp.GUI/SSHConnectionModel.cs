@@ -14,5 +14,7 @@ namespace RustBotCSharp.GUI
         public string Username { get; set; } = "root";
         [XmlAttribute]
         public string Password { get; set; } = "";
+        [XmlIgnore]
+        public string Status { get; set; } = "Idle";
     }
 }
