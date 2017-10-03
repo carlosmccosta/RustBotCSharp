@@ -81,18 +81,24 @@ namespace RustBotCSharp.GUI
             return -1;
         }
 
+        public void InitializeSSHClient()
+        {
+            SSHClient = new SshClient(
+                SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Host,
+                SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Port,
+                SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Username,
+                Encryption.DecryptString(SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Password, _encryptionKey));
+            SSHClient.ConnectionInfo.Timeout = TimeSpan.FromSeconds(1.0);
+            SSHClient.Connect();
+        }
+
         public bool InitializeRecording()
         {
             SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Initializing recording...";
             try
             {
-                SSHClient = new SshClient(
-                    SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Host,
-                    SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Port,
-                    SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Username,
-                    Encryption.DecryptString(SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Password, _encryptionKey));
-                SSHClient.ConnectionInfo.Timeout = TimeSpan.FromSeconds(1.0);
-                SSHClient.Connect();
+                if (SSHClient == null)
+                    InitializeSSHClient();
 
                 int exitStatus = ExecuteSSHCommand(SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHStartRecordCommand);
                 if (exitStatus == 0)
@@ -121,12 +127,36 @@ namespace RustBotCSharp.GUI
             {
                 _recordActive = false;
                 RecordingButton.Content = _inactiveRecordingText;
-                SSHClient.Disconnect();
-                SSHClient.Dispose();
                 SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Recording stopped.";
                 return true;
             }
             SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Failed to stop recording with SSH exit code " + exitStatus;
+            return false;
+        }
+
+        public bool PlayRecording()
+        {
+            SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Initializing playback of recording...";
+            if (SSHClient == null)
+            {
+                try
+                {
+                    InitializeSSHClient();
+                }
+                catch (Exception)
+                {
+                    SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Failed to connect to SSH server...";
+                    return false;
+                }
+            }
+
+            int exitStatus = ExecuteSSHCommand(SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHPlayRecordCommand);
+            if (exitStatus == 0 || exitStatus == 1)
+            {
+                SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Playback started.";
+                return true;
+            }
+            SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Failed to start playback with SSH exit code " + exitStatus;
             return false;
         }
 
@@ -146,6 +176,11 @@ namespace RustBotCSharp.GUI
                 InitializeRecording();
         }
 
+        private void PlaybackButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            PlayRecording();
+        }
+
         private void SSHPasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
         {
             SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Password = Encryption.EncryptString(SSHPasswordBox.Password, _encryptionKey);
@@ -153,7 +188,18 @@ namespace RustBotCSharp.GUI
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
-            //NetMQConfig.Cleanup(false);
+            try
+            {
+                //NetMQConfig.Cleanup(false);
+                if (SSHClient != null)
+                {
+                    SSHClient.Disconnect();
+                    SSHClient.Dispose();
+                }
+            }
+            catch (Exception)
+            {}
+
             base.OnClosing(e);
             Application.Current.Shutdown();
             Environment.Exit(0);

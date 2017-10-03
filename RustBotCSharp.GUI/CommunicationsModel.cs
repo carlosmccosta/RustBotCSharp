@@ -75,6 +75,7 @@ namespace RustBotCSharp.GUI
             SSHConnectionModel = communicationsModel.SSHConnectionModel;
             SSHStartRecordCommand = communicationsModel.SSHStartRecordCommand;
             SSHStopRecordCommand = communicationsModel.SSHStopRecordCommand;
+            SSHPlayRecordCommand = communicationsModel.SSHPlayRecordCommand;
         }
 
         [XmlElement]
@@ -87,5 +88,7 @@ namespace RustBotCSharp.GUI
         public string SSHStartRecordCommand { get; set; } = "~/start_recording.bash";
         [XmlElement]
         public string SSHStopRecordCommand { get; set; } = "~/stop_recording.bash";
+        [XmlElement]
+        public string SSHPlayRecordCommand { get; set; } = "~/play_recording.bash";
     }
 }

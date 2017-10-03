@@ -220,7 +220,14 @@
                                     <Label>SSH stop recording script:</Label>
                                     <TextBox Text="{Binding CommunicationsModel.SSHStopRecordCommand, Mode=TwoWay}"/>
                                 </StackPanel>
-                                <Button Name="RecordingButton" Click="RecordingButton_OnClick">Start recording</Button>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Label>SSH playback recording script:</Label>
+                                    <TextBox Text="{Binding CommunicationsModel.SSHPlayRecordCommand, Mode=TwoWay}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Name="RecordingButton" Click="RecordingButton_OnClick">Start recording</Button>
+                                    <Button Name="PlaybackButton" Click="PlaybackButton_OnClick">Start playback</Button>
+                                </StackPanel>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Height="60">
                                     <Label VerticalContentAlignment="Center">SSH status:</Label>
                                     <TextBox Text="{Binding CommunicationsModel.SSHConnectionModel.Status}" TextWrapping="Wrap" IsReadOnlyCaretVisible="True"
