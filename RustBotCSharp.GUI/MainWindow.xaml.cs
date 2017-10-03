@@ -99,6 +99,8 @@ namespace RustBotCSharp.GUI
             {
                 if (SSHClient == null)
                     InitializeSSHClient();
+                else if (!SSHClient.IsConnected)
+                    SSHClient.Connect();
 
                 int exitStatus = ExecuteSSHCommand(SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHStartRecordCommand);
                 if (exitStatus == 0)
@@ -137,17 +139,18 @@ namespace RustBotCSharp.GUI
         public bool PlayRecording()
         {
             SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Initializing playback of recording...";
-            if (SSHClient == null)
+
+            try
             {
-                try
-                {
+                if (SSHClient == null)
                     InitializeSSHClient();
-                }
-                catch (Exception)
-                {
-                    SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Failed to connect to SSH server...";
-                    return false;
-                }
+                else if (!SSHClient.IsConnected)
+                    SSHClient.Connect();
+            }
+            catch (Exception)
+            {
+                SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Failed to connect to SSH server...";
+                return false;
             }
 
             int exitStatus = ExecuteSSHCommand(SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHPlayRecordCommand);
