@@ -16,10 +16,13 @@ namespace RustBotCSharp.GUI
         private SshClient SSHClient = null;
         private bool _streamingActive = false;
         private bool _recordActive = false;
-        private const string _activeStreamingText = "Stop Streaming";
-        private const string _inactiveStreamingText = "Start Streaming";
-        private const string _activeRecordingText = "Stop Recording";
-        private const string _inactiveRecordingText = "Start Recording";
+        private bool _playbackActive = false;
+        private const string _activeStreamingText = "Stop streaming";
+        private const string _inactiveStreamingText = "Start streaming";
+        private const string _activeRecordingText = "Stop recording";
+        private const string _inactiveRecordingText = "Start recording";
+        private const string _activePlaybackText = "Stop playback";
+        private const string _inactivePlaybackText = "Start playback";
         private const string _encryptionKey = "3101337073";
 
         public MainWindow()
@@ -103,7 +106,7 @@ namespace RustBotCSharp.GUI
                     SSHClient.Connect();
 
                 int exitStatus = ExecuteSSHCommand(SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHStartRecordCommand);
-                if (exitStatus == 0)
+                if (exitStatus == 0 || exitStatus == 1)
                 {
                     _recordActive = true;
                     RecordingButton.Content = _activeRecordingText;
@@ -136,30 +139,45 @@ namespace RustBotCSharp.GUI
             return false;
         }
 
-        public bool PlayRecording()
+        public bool InitializePlayback()
         {
-            SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Initializing playback of recording...";
-
+            SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Initializing playback...";
             try
             {
                 if (SSHClient == null)
                     InitializeSSHClient();
                 else if (!SSHClient.IsConnected)
                     SSHClient.Connect();
+
+                int exitStatus = ExecuteSSHCommand(SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHStartPlaybackCommand);
+                if (exitStatus == 0 || exitStatus == 1)
+                {
+                    _playbackActive = true;
+                    PlaybackButton.Content = _activePlaybackText;
+                    SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Playback started.";
+                    return true;
+                }
+                SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Failed to start playback with SSH exit code " + exitStatus;
+                return false;
             }
             catch (Exception)
             {
                 SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Failed to connect to SSH server...";
                 return false;
             }
-
-            int exitStatus = ExecuteSSHCommand(SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHPlayRecordCommand);
+        }
+        public bool StopPlayback()
+        {
+            SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Stopping playback...";
+            int exitStatus = ExecuteSSHCommand(SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHStopPlaybackCommand);
             if (exitStatus == 0 || exitStatus == 1)
             {
-                SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Playback started.";
+                _playbackActive = false;
+                PlaybackButton.Content = _inactivePlaybackText;
+                SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Playback stopped.";
                 return true;
             }
-            SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Failed to start playback with SSH exit code " + exitStatus;
+            SEVDataSubscriberWPF.SEVDataModel.CommunicationsModel.SSHConnectionModel.Status = "Failed to stop playback with SSH exit code " + exitStatus;
             return false;
         }
 
@@ -181,7 +199,10 @@ namespace RustBotCSharp.GUI
 
         private void PlaybackButton_OnClick(object sender, RoutedEventArgs e)
         {
-            PlayRecording();
+            if (_playbackActive)
+                StopPlayback();
+            else
+                InitializePlayback();
         }
 
         private void SSHPasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
