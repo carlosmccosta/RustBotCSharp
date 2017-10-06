@@ -79,4 +79,19 @@ For better understanding of how the communication protocol works, you should rea
 
 For proper 3D point cloud view in Windows 10 on a multi-GPU system it is necessary to compile the [Helix toolkit](http://www.helix-toolkit.org/) with [this fix](https://github.com/helix-toolkit/helix-toolkit/issues/282).
 
-You can then generate the nuget packages using the after_build scripts in the [appveyor.yml](https://github.com/helix-toolkit/helix-toolkit/blob/develop/appveyor.yml) and compile the [Helix Toolkit solution](https://github.com/helix-toolkit/helix-toolkit/blob/develop/Source/HelixToolkit.Wpf.SharpDX.sln).
+You can then [generate the nuget packages](https://docs.microsoft.com/en-us/nuget/create-packages/creating-a-package#running-nuget-pack-to-generate-the-nupkg-file) using the after_build scripts in the [appveyor.yml](https://github.com/helix-toolkit/helix-toolkit/blob/develop/appveyor.yml) and compile the [Helix Toolkit solution](https://github.com/helix-toolkit/helix-toolkit/blob/develop/Source/HelixToolkit.Wpf.SharpDX.sln).
+
+```
+nuget pack Source\HelixToolkit\HelixToolkit.nuspec -version "1.0.0"
+nuget pack Source\HelixToolkit.Wpf\HelixToolkit.Wpf.nuspec -version "1.0.0"
+nuget pack Source\HelixToolkit.Wpf.SharpDX\HelixToolkit.Wpf.Sharpdx.nuspec -version "1.0.0"
+```
+
+The testing and compilation of this repository used the helix-toolkit at the commit with hash [02dcd5b596bcfdabf63418f3b45bd763ca271109](https://github.com/helix-toolkit/helix-toolkit/commit/02dcd5b596bcfdabf63418f3b45bd763ca271109)
+
+You should clone the helix-toolkit and then checkout to this version (otherwise you may need to check if the helix-toolkit changed and make upgrade modifications to the source code accordingly).
+
+```
+git clone https://github.com/helix-toolkit/helix-toolkit.git
+git checkout 02dcd5b596bcfdabf63418f3b45bd763ca271109
+```
