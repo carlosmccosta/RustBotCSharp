@@ -95,3 +95,5 @@ You should clone the helix-toolkit and then checkout to this version (otherwise 
 git clone https://github.com/helix-toolkit/helix-toolkit.git
 git checkout 02dcd5b596bcfdabf63418f3b45bd763ca271109
 ```
+
+If you do not want to compile the helix-toolkit yourself, you can find the dlls I compiled [here](https://github.com/carlosmccosta/RustBotCSharp/releases/download/v1.1.1/RustBotCSharpSrc.exe) (in the packages folder).
